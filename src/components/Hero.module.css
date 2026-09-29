@@ -1,0 +1,130 @@
+.hero {
+  padding-block: clamp(2.25rem, 1.5rem + 3vw, 4.5rem) clamp(3.5rem, 2rem + 6vw, 7.5rem);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.25rem;
+}
+
+.eyebrow {
+  color: var(--muted);
+}
+
+.eyebrow span {
+  white-space: nowrap;
+}
+
+.title {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  margin-block: -0.5rem 0.5rem;
+  font-weight: 800;
+  line-height: 0.8;
+}
+
+.titleName {
+  /* Largura do nome acompanha a coluna: preenche a linha em qualquer tela. */
+  font-size: min(27.5cqi, 30svh);
+  letter-spacing: -0.045em;
+  font-variation-settings: "wdth" 72;
+  margin-left: -0.04em;
+}
+
+.titleKind {
+  align-self: flex-end;
+  margin-top: 0.32em;
+  font-size: min(12.5cqi, 13.6svh);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 125;
+}
+
+.intro {
+  display: grid;
+  gap: 1.75rem;
+  max-width: 34rem;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 29.99rem) {
+  .actions {
+    flex-direction: column;
+  }
+}
+
+.aside {
+  display: flex;
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: 3rem;
+  }
+
+  .eyebrow,
+  .title {
+    grid-column: 1 / -1;
+  }
+
+  .intro {
+    grid-column: 1 / span 6;
+  }
+
+  .aside {
+    grid-column: 8 / -1;
+    align-self: end;
+    justify-content: flex-end;
+  }
+}
+
+/* Entrada discreta, só no primeiro carregamento. */
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow,
+  .titleName,
+  .titleKind,
+  .intro,
+  .aside {
+    animation: rise 900ms var(--ease-out) both;
+  }
+
+  .titleName {
+    animation-delay: 60ms;
+  }
+
+  .titleKind {
+    animation-delay: 160ms;
+  }
+
+  .intro {
+    animation-delay: 280ms;
+  }
+
+  .aside {
+    animation-delay: 360ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
