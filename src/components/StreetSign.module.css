@@ -1,0 +1,58 @@
+.sign {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.9em 1.4em 1em;
+  border-radius: 6px;
+  background: var(--placa);
+  color: var(--placa-text);
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 1rem;
+  box-shadow:
+    inset 0 0 0 0.3em var(--placa),
+    inset 0 0 0 calc(0.3em + 1.5px) rgb(255 255 255 / 0.9),
+    0 1px 0 rgb(0 0 0 / 0.08),
+    0 12px 28px -18px rgb(10 20 45 / 0.55);
+}
+
+
+.kind {
+  font-size: 0.6875em;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  font-variation-settings: "wdth" 110;
+}
+
+.street {
+  font-size: 1.625em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-variation-settings: "wdth" 78;
+  white-space: nowrap;
+}
+
+.number {
+  font-weight: 800;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding-top: 0.45em;
+  border-top: 1px solid rgb(255 255 255 / 0.45);
+  font-size: 0.6875em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  font-variation-settings: "wdth" 110;
+}
+
+.dot {
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+  background: currentColor;
+}

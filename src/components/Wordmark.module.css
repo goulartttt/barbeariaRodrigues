@@ -1,0 +1,21 @@
+.wordmark {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 1.1875rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-variation-settings: "wdth" 72;
+}
+
+.kind {
+  margin-top: 0.2rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  font-variation-settings: "wdth" 125;
+}
