@@ -34,12 +34,16 @@
   background: var(--placa);
   color: var(--placa-text);
   /* Filete interno, como a borda das placas de rua. */
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28), inset 0 0 0 3px var(--placa);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.28),
+    inset 0 0 0 3px var(--placa);
 }
 
 .primary:hover {
   background: var(--placa-hover);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4), inset 0 0 0 3px var(--placa-hover);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.4),
+    inset 0 0 0 3px var(--placa-hover);
 }
 
 .secondary {

@@ -1,7 +1,11 @@
 .rating {
   display: inline-flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-self: start;
+  gap: 0.25rem 0.75rem;
+  min-height: 2.75rem;
+  font-size: var(--text-sm);
   text-decoration: none;
 }
 
@@ -11,16 +15,7 @@
   color: var(--placa);
 }
 
-.text {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0 0.4rem;
-  font-size: var(--text-sm);
-}
-
 .text strong {
-  font-size: 1.25rem;
   font-weight: 700;
 }
 

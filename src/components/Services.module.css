@@ -2,33 +2,28 @@
   padding-block: var(--section-y);
 }
 
-.grid {
-  display: grid;
-  gap: 3rem;
-}
-
 .header {
   display: grid;
-  align-content: start;
-  gap: 1.25rem;
-}
-
-.eyebrow {
-  color: var(--on-ink-muted);
+  gap: 1.5rem;
+  padding-bottom: clamp(2rem, 1rem + 3vw, 3.5rem);
+  border-bottom: 1px solid var(--on-ink-line);
 }
 
 .title {
-  max-width: 12ch;
   font-size: var(--text-2xl);
   font-weight: 700;
-  line-height: 0.98;
+  line-height: 0.95;
   letter-spacing: -0.03em;
   font-variation-settings: "wdth" 80;
-  text-wrap: balance;
+}
+
+.aside {
+  display: grid;
+  gap: 1rem;
+  max-width: 26rem;
 }
 
 .note {
-  max-width: 30rem;
   color: var(--on-ink-muted);
   text-wrap: pretty;
 }
@@ -38,7 +33,7 @@
   align-items: center;
   gap: 0.5rem;
   justify-self: start;
-  padding-block: 0.25rem;
+  min-height: 2.75rem;
   font-weight: 600;
   text-decoration: underline;
   text-decoration-color: var(--on-ink-line);
@@ -50,61 +45,49 @@
   text-decoration-color: currentColor;
 }
 
+/* Os serviços correm como texto, separados por barras, em vez de cartões ou tabela. */
 .list {
-  border-top: 1px solid var(--on-ink-line);
+  padding-top: clamp(2rem, 1rem + 3vw, 3.5rem);
+  font-size: clamp(2rem, 1.1rem + 3.6vw, 4.75rem);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-variation-settings: "wdth" 84;
+  text-wrap: balance;
 }
 
-.item {
-  display: grid;
-  grid-template-columns: 2.75rem 1fr;
-  align-items: baseline;
-  padding-block: clamp(0.9rem, 0.6rem + 1vw, 1.4rem);
-  border-bottom: 1px solid var(--on-ink-line);
+.list li {
+  display: inline;
 }
 
-.index {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.08em;
+.list li:not(:last-child)::after {
+  /* Espaço fixo antes da barra: a quebra de linha só acontece depois dela. */
+  content: "\00a0/ ";
+  content: "\00a0/ " / "";
   color: var(--on-ink-muted);
-  font-variant-numeric: tabular-nums;
+  font-weight: 200;
 }
 
-.name {
-  font-size: var(--text-xl);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  font-variation-settings: "wdth" 90;
+@media (min-width: 48rem) {
+  /* Com espaço suficiente, nenhum nome de serviço é partido entre linhas. */
+  .list li {
+    white-space: nowrap;
+  }
+
+  /* A barra mantém o espaço final quebrável; é ali que a linha pode quebrar. */
+  .list li::after {
+    white-space: normal;
+  }
 }
 
 .more {
-  padding-top: 1.25rem;
-  padding-left: 2.75rem;
+  padding-top: 2rem;
   color: var(--on-ink-muted);
 }
 
 @media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-
   .header {
-    grid-column: 1 / span 4;
-    position: sticky;
-    top: calc(var(--header-h) + 2.5rem);
-    align-self: start;
-  }
-
-  .listWrap {
-    grid-column: 6 / -1;
-  }
-
-  .item {
-    grid-template-columns: 4.5rem 1fr;
-  }
-
-  .more {
-    padding-left: 4.5rem;
+    grid-template-columns: 1fr auto;
+    align-items: end;
   }
 }

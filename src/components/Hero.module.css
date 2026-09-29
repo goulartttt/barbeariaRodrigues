@@ -71,12 +71,6 @@
 
 .aside {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
 }
 
 @media (min-width: 64rem) {
@@ -97,10 +91,7 @@
   .aside {
     grid-column: 8 / -1;
     align-self: end;
-    padding-top: 0;
-    border-top: 0;
     justify-content: flex-end;
-    gap: 3rem;
   }
 }
 

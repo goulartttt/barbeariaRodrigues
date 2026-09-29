@@ -1,6 +1,6 @@
 import { business } from "@/content/business";
 import { ActionLink } from "./ActionLink";
-import { ArrowUpRight, Phone } from "./icons";
+import { ArrowUpRight } from "./icons";
 import styles from "./ClosingCta.module.css";
 
 export function ClosingCta() {
@@ -12,14 +12,14 @@ export function ClosingCta() {
         </h2>
         <div className={styles.side}>
           <p className={styles.note}>
-            O agendamento é feito pela {business.booking.provider}, plataforma externa de agenda.
-            Se preferir, é só ligar.
+            O agendamento é feito pela {business.booking.provider}, plataforma externa de agenda. Se
+            preferir, é só ligar.
           </p>
           <div className={styles.actions} data-closing-actions>
             <ActionLink href={business.booking.url} external icon={<ArrowUpRight />}>
               Agendar horário
             </ActionLink>
-            <ActionLink href={business.phone.href} variant="secondary" icon={<Phone />}>
+            <ActionLink href={business.phone.href} variant="secondary">
               {business.phone.display}
             </ActionLink>
           </div>

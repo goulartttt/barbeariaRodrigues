@@ -1,15 +1,4 @@
-import type { ReactNode } from "react";
 import styles from "./ActionLink.module.css";
-
-type Props = {
-  href: string;
-  children: ReactNode;
-  variant?: "primary" | "secondary";
-  /** Abre em nova aba e sinaliza isso para leitores de tela. */
-  external?: boolean;
-  icon?: ReactNode;
-  className?: string;
-};
 
 export function ActionLink({
   href,
@@ -18,7 +7,7 @@ export function ActionLink({
   external = false,
   icon,
   className,
-}: Props) {
+}) {
   return (
     <a
       href={href}

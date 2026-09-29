@@ -16,7 +16,7 @@ export function MobileActionBar() {
     const targets = document.querySelectorAll("[data-hero-actions], [data-closing-actions]");
     if (targets.length === 0) return;
 
-    const onScreen = new Set<Element>();
+    const onScreen = new Set();
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) onScreen.add(entry.target);

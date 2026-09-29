@@ -43,7 +43,7 @@ export const business = {
     /** Quando a nota e o total foram consultados. Atualize junto com os números. */
     checkedAt: "setembro de 2026",
   },
-} as const;
+};
 
 /** Serviços listados no perfil do Google. */
 export const services = [
@@ -55,7 +55,7 @@ export const services = [
   "Coloração",
   "Penteados",
   "Prótese capilar",
-] as const;
+];
 
 /** Temas recorrentes nas avaliações do Google (resumo, não citações). */
 export const reviewThemes = [
@@ -64,4 +64,4 @@ export const reviewThemes = [
   "Preço justo",
   "Ambiente limpo e agradável",
   "O corte sai como foi pedido",
-] as const;
+];

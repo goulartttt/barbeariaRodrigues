@@ -1,6 +1,6 @@
 import { business } from "@/content/business";
 import { ActionLink } from "./ActionLink";
-import { ArrowUpRight, Phone } from "./icons";
+import { ArrowUpRight } from "./icons";
 import { Rating } from "./Rating";
 import { StreetSign } from "./StreetSign";
 import styles from "./Hero.module.css";
@@ -13,8 +13,7 @@ export function Hero() {
       <div className={`container ${styles.grid}`}>
         <p className={`eyebrow ${styles.eyebrow}`}>
           <span>{address.neighborhood}</span> <span aria-hidden="true">·</span>{" "}
-          <span>{address.region}</span> <span aria-hidden="true">·</span>{" "}
-          <span>{address.city}</span>
+          <span>{address.region}</span>
         </p>
 
         <h1 id="hero-title" className={styles.title}>
@@ -24,22 +23,23 @@ export function Hero() {
 
         <div className={styles.intro}>
           <p className={styles.lead}>
-            Corte de cabelo, barba e tratamentos capilares na {address.neighborhood}, {address.region}{" "}
-            de São Paulo. Agende online ou ligue.
+            Corte de cabelo, barba e tratamentos capilares na {address.neighborhood},{" "}
+            {address.region} de São Paulo. Agende online ou ligue.
           </p>
 
           <div className={styles.actions} data-hero-actions>
             <ActionLink href={business.booking.url} external icon={<ArrowUpRight />}>
               Agendar horário
             </ActionLink>
-            <ActionLink href={business.phone.href} variant="secondary" icon={<Phone />}>
+            <ActionLink href={business.phone.href} variant="secondary">
               {business.phone.display}
             </ActionLink>
           </div>
+
+          <Rating />
         </div>
 
         <div className={styles.aside}>
-          <Rating />
           <StreetSign />
         </div>
       </div>

@@ -19,7 +19,7 @@ export function Rating() {
         ))}
       </span>
       <span className={styles.text}>
-        <strong>{rating}</strong> no Google{" "}
+        <strong>{rating}</strong> no Google <span aria-hidden="true">·</span>{" "}
         <span className={styles.count}>{reviewCount} avaliações</span>
       </span>
       <span className="visually-hidden"> (abre o perfil no Google Maps em nova aba)</span>

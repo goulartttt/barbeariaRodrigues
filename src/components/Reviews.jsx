@@ -9,7 +9,6 @@ export function Reviews() {
     <section id="avaliacoes" className={styles.section} aria-labelledby="avaliacoes-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.score}>
-          <p className={`eyebrow ${styles.eyebrow}`}>Avaliações no Google</p>
           <p className={styles.rating}>
             <span className={styles.number}>{rating}</span>
             <span className="visually-hidden"> de 5 estrelas</span>
@@ -20,9 +19,10 @@ export function Reviews() {
             ))}
           </span>
           <p className={styles.count}>
-            {reviewCount} avaliações
+            {reviewCount} avaliações no Google
             <span className={styles.checked}>Consultado em {checkedAt}.</span>
           </p>
+          <p className={styles.welcome}>Empresa que acolhe a comunidade LGBTQ+.</p>
         </div>
 
         <div className={styles.body}>

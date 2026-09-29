@@ -1,4 +1,3 @@
-import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import { business, services } from "@/content/business";
 import "./globals.css";
@@ -14,7 +13,7 @@ const title = `${business.name} · Vila Aurora, Zona Norte de São Paulo`;
 const description =
   "Barbearia na Vila Aurora, Zona Norte de São Paulo. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou ligue (11) 97190-4140.";
 
-export const metadata: Metadata = {
+export const metadata = {
   title,
   description,
   applicationName: business.name,
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
 };
 
-export const viewport: Viewport = {
+export const viewport = {
   themeColor: "#f3efe8",
   width: "device-width",
   initialScale: 1,
@@ -59,7 +58,7 @@ const structuredData = {
   })),
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={archivo.variable}>
       <body>
