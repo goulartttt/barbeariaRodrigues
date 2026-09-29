@@ -43,6 +43,13 @@
   color: var(--on-ink-muted);
 }
 
+/* No celular, reserva espaço para a barra fixa de agendamento não cobrir o rodapé. */
+@media (max-width: 47.99rem) {
+  .footer {
+    padding-bottom: calc(3rem + 4.25rem + env(safe-area-inset-bottom));
+  }
+}
+
 @media (min-width: 64rem) {
   .inner {
     grid-template-columns: auto 1fr auto;

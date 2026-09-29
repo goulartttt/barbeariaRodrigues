@@ -24,7 +24,7 @@ export function Hero() {
         <div className={styles.intro}>
           <p className={styles.lead}>
             Corte de cabelo, barba e tratamentos capilares na {address.neighborhood},{" "}
-            {address.region} de São Paulo. Agende online ou ligue.
+            {address.region} de {address.city}. Agende online ou ligue.
           </p>
 
           <div className={styles.actions} data-hero-actions>

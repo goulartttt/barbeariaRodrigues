@@ -1,5 +1,6 @@
 import { business } from "@/content/business";
-import { Star } from "./icons";
+import { Stars } from "./icons";
+import { ExternalLink } from "./ExternalLink";
 import styles from "./Rating.module.css";
 
 /** Nota do Google em formato compacto. */
@@ -7,22 +8,18 @@ export function Rating() {
   const { rating, reviewCount } = business.google;
 
   return (
-    <a
+    <ExternalLink
       href={business.maps.profile}
-      target="_blank"
-      rel="noopener noreferrer"
       className={styles.rating}
+      hint="abre o perfil no Google Maps em nova aba"
     >
-      <span className={styles.stars} aria-hidden="true">
-        {Array.from({ length: 5 }, (_, i) => (
-          <Star key={i} size={15} />
-        ))}
-      </span>
+      <Stars size={15} className={styles.stars} />
       <span className={styles.text}>
-        <strong>{rating}</strong> no Google <span aria-hidden="true">·</span>{" "}
+        <strong>{rating}</strong>
+        <span className="visually-hidden"> de 5 estrelas</span> no Google{" "}
+        <span aria-hidden="true">·</span>{" "}
         <span className={styles.count}>{reviewCount} avaliações</span>
       </span>
-      <span className="visually-hidden"> (abre o perfil no Google Maps em nova aba)</span>
-    </a>
+    </ExternalLink>
   );
 }

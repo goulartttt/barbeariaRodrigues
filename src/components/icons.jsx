@@ -32,3 +32,14 @@ export function Star({ size = 18, className }) {
     </svg>
   );
 }
+
+/** Cinco estrelas decorativas; a nota em si é sempre dita em texto. */
+export function Stars({ size, className }) {
+  return (
+    <span className={className} aria-hidden="true">
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star key={i} size={size} />
+      ))}
+    </span>
+  );
+}

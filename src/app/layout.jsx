@@ -9,9 +9,10 @@ const archivo = Archivo({
   variable: "--font-archivo",
 });
 
-const title = `${business.name} · Vila Aurora, Zona Norte de São Paulo`;
-const description =
-  "Barbearia na Vila Aurora, Zona Norte de São Paulo. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou ligue (11) 97190-4140.";
+const { address, phone } = business;
+const place = `${address.neighborhood}, ${address.region} de ${address.city}`;
+const title = `${business.name} · ${place}`;
+const description = `Barbearia na ${place}. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou ligue ${phone.display}.`;
 
 export const metadata = {
   title,

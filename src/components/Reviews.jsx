@@ -1,5 +1,6 @@
 import { business, reviewThemes } from "@/content/business";
-import { ArrowUpRight, Star } from "./icons";
+import { ArrowUpRight, Stars } from "./icons";
+import { ExternalLink } from "./ExternalLink";
 import styles from "./Reviews.module.css";
 
 export function Reviews() {
@@ -13,11 +14,7 @@ export function Reviews() {
             <span className={styles.number}>{rating}</span>
             <span className="visually-hidden"> de 5 estrelas</span>
           </p>
-          <span className={styles.stars} aria-hidden="true">
-            {Array.from({ length: 5 }, (_, i) => (
-              <Star key={i} size={22} />
-            ))}
-          </span>
+          <Stars size={22} className={styles.stars} />
           <p className={styles.count}>
             {reviewCount} avaliações no Google
             <span className={styles.checked}>Consultado em {checkedAt}.</span>
@@ -41,16 +38,10 @@ export function Reviews() {
             profissional e atencioso.
           </p>
 
-          <a
-            href={business.maps.profile}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.link}
-          >
+          <ExternalLink href={business.maps.profile} className={styles.link}>
             Ler as avaliações no Google
             <ArrowUpRight size={16} />
-            <span className="visually-hidden"> (abre em nova aba)</span>
-          </a>
+          </ExternalLink>
         </div>
       </div>
     </section>

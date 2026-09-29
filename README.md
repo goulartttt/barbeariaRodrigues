@@ -8,12 +8,11 @@ Site oficial da Rodrigues Barbearia (Vila Aurora, Zona Norte de São Paulo). O a
 npm install
 npm run dev        # http://localhost:3000
 npm run build      # build de produção (página estática)
-npm run typecheck
 ```
 
 ## Onde fica o conteúdo
 
-Todos os fatos do negócio (endereço, telefone, nota do Google, serviços, temas das avaliações) ficam em `src/content/business.ts`. Não adicione preços, horários, equipe, redes sociais ou depoimentos sem confirmação do dono. Ao atualizar a nota ou o total de avaliações do Google, atualize também `checkedAt`.
+Todos os fatos do negócio (endereço, telefone, nota do Google, serviços, temas das avaliações) ficam em `src/content/business.js`. Não adicione preços, horários, equipe, redes sociais ou depoimentos sem confirmação do dono. Ao atualizar a nota ou o total de avaliações do Google, atualize também `checkedAt`.
 
 ## Fotos
 

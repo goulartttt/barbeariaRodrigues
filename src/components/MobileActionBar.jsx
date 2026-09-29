@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { business } from "@/content/business";
 import { ArrowUpRight, Phone } from "./icons";
+import { ExternalLink } from "./ExternalLink";
 import styles from "./MobileActionBar.module.css";
 
 /**
@@ -13,6 +14,7 @@ export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Marcadores definidos em Hero e ClosingCta.
     const targets = document.querySelectorAll("[data-hero-actions], [data-closing-actions]");
     if (targets.length === 0) return;
 
@@ -32,16 +34,10 @@ export function MobileActionBar() {
 
   return (
     <div className={styles.bar} data-visible={visible} aria-hidden={!visible} inert={!visible}>
-      <a
-        href={business.booking.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.primary}
-      >
+      <ExternalLink href={business.booking.url} className={styles.primary}>
         Agendar horário
         <ArrowUpRight size={16} />
-        <span className="visually-hidden"> (abre em nova aba)</span>
-      </a>
+      </ExternalLink>
       <a href={business.phone.href} className={styles.secondary}>
         <Phone size={18} />
         <span>Ligar</span>

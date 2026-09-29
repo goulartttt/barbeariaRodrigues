@@ -1,6 +1,7 @@
 import { business } from "@/content/business";
 import { navItems } from "@/content/navigation";
 import { Wordmark } from "./Wordmark";
+import { ExternalLink } from "./ExternalLink";
 import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
@@ -25,10 +26,7 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <a href={booking.url} target="_blank" rel="noopener noreferrer">
-                Agendar pela {booking.provider}
-                <span className="visually-hidden"> (abre em nova aba)</span>
-              </a>
+              <ExternalLink href={booking.url}>Agendar pela {booking.provider}</ExternalLink>
             </li>
           </ul>
         </nav>

@@ -1,5 +1,6 @@
 import { business, services } from "@/content/business";
 import { ArrowUpRight } from "./icons";
+import { ExternalLink } from "./ExternalLink";
 import styles from "./Services.module.css";
 
 export function Services() {
@@ -15,16 +16,10 @@ export function Services() {
               Valores e horários disponíveis ficam na agenda online, onde você escolhe o serviço e
               reserva.
             </p>
-            <a
-              href={business.booking.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
+            <ExternalLink href={business.booking.url} className={styles.link}>
               Ver na agenda online
               <ArrowUpRight size={16} />
-              <span className="visually-hidden"> (abre em nova aba)</span>
-            </a>
+            </ExternalLink>
           </div>
         </div>
 

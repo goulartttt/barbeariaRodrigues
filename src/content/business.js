@@ -5,37 +5,37 @@
  * sem confirmação do dono.
  */
 
-const street = "R. Mariquinha Viana, 875";
-const fullAddress = `${street} - Vila Aurora, São Paulo - SP, 02408-131`;
+const name = "Rodrigues Barbearia";
+
+const address = {
+  street: "R. Mariquinha Viana",
+  number: "875",
+  neighborhood: "Vila Aurora",
+  region: "Zona Norte",
+  city: "São Paulo",
+  state: "SP",
+  postalCode: "02408-131",
+};
+address.full = `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.postalCode}`;
+
+const phoneE164 = "+5511971904140";
+const mapsQuery = encodeURIComponent(`${name}, ${address.full}`);
 
 export const business = {
-  name: "Rodrigues Barbearia",
-  address: {
-    street: "R. Mariquinha Viana",
-    number: "875",
-    neighborhood: "Vila Aurora",
-    region: "Zona Norte",
-    city: "São Paulo",
-    state: "SP",
-    postalCode: "02408-131",
-    full: fullAddress,
-  },
+  name,
+  address,
   phone: {
     display: "(11) 97190-4140",
-    href: "tel:+5511971904140",
-    e164: "+5511971904140",
+    e164: phoneE164,
+    href: `tel:${phoneE164}`,
   },
   booking: {
     url: "https://topsalao.com/?id=98939",
     provider: "TopSalão",
   },
   maps: {
-    profile: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      `Rodrigues Barbearia, ${fullAddress}`,
-    )}`,
-    directions: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-      `Rodrigues Barbearia, ${fullAddress}`,
-    )}`,
+    profile: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
+    directions: `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`,
   },
   google: {
     rating: "5,0",
