@@ -38,10 +38,10 @@ export const business = {
     display: "(11) 97190-4140",
     href: `https://wa.me/${whatsappNumber}`,
   },
-  /** Aparece na placa e no toldo da fachada. */
+  /** Perfil confirmado pelo dono em 30/09/2026. */
   instagram: {
-    handle: "@rodrigues_barbeariazn",
-    url: "https://www.instagram.com/rodrigues_barbeariazn/",
+    handle: "@rodriguesbarbeariazn",
+    url: "https://www.instagram.com/rodriguesbarbeariazn/",
   },
   /** Ano de abertura, que aparece no logo. Confirmado pelo dono em 30/09/2026. */
   since: 2016,
