@@ -19,7 +19,6 @@ export function Reviews() {
             {reviewCount} avaliações no Google
             <span className={styles.checked}>Consultado em {checkedAt}.</span>
           </p>
-          <p className={styles.welcome}>Empresa que acolhe a comunidade LGBTQ+.</p>
         </div>
 
         <div className={styles.body}>

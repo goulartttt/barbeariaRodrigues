@@ -45,15 +45,6 @@
   color: var(--muted);
 }
 
-.welcome {
-  margin-top: 0.75rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  max-width: 18rem;
-  font-size: var(--text-sm);
-  color: var(--ink-soft);
-}
-
 .body {
   display: grid;
   align-content: start;

@@ -72,24 +72,6 @@
   text-wrap: pretty;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.55rem 1rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-pill);
-  font-size: var(--text-sm);
-}
-
-.badge::before {
-  content: "";
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: conic-gradient(#e24c4c, #f0a53c, #f2d74a, #4cae5b, #3f7fd6, #8a4fc9, #e24c4c);
-}
-
 .team {
   grid-column: 1 / -1;
   min-width: 0;

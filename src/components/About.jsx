@@ -43,9 +43,6 @@ export function About() {
             A Rodrigues fica na {address.street}, {address.number}, na {address.region} de{" "}
             {address.city}. Nas avaliações do Google, os clientes destacam {themes}.
           </p>
-          <p className={styles.badge} data-reveal>
-            Empresa que acolhe a comunidade LGBTQ+
-          </p>
         </div>
 
         <div className={styles.team}>
