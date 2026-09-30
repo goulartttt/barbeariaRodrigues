@@ -20,7 +20,7 @@ export function Visit() {
     },
     {
       title: "Marque o horário livre",
-      text: `É só chegar na ${address.street}, ${address.number}.`,
+      text: `É só chegar na ${address.streetDisplay}, ${address.number}.`,
     },
   ];
 

@@ -1,10 +1,18 @@
 .stage {
   position: relative;
+  overflow: clip;
   pointer-events: none;
 }
 
+/*
+ * A câmera 3D mantém o ângulo vertical, então a imagem estática acompanha a
+ * altura do palco (e não a largura) para o objeto ter o mesmo tamanho nas duas.
+ */
 .poster {
-  object-fit: contain;
+  inset: 0 auto 0 50% !important;
+  width: auto !important;
+  max-width: none;
+  translate: -50% 0;
   transition: opacity var(--dur-slow) var(--ease-out);
 }
 

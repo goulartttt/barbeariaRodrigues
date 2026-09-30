@@ -150,6 +150,13 @@
   }
 }
 
+/* No celular a faixa de números logo abaixo já mostra 2016. */
+@media (max-width: 47.99rem) {
+  .since {
+    display: none;
+  }
+}
+
 @media (max-width: 29.99rem) {
   .actions {
     width: 100%;

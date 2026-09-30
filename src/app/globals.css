@@ -191,6 +191,13 @@ svg {
   font-variation-settings: "wdth" 115;
 }
 
+/* No celular o espaçamento largo quebrava rótulos curtos em duas linhas. */
+@media (max-width: 47.99rem) {
+  .eyebrow {
+    letter-spacing: 0.18em;
+  }
+}
+
 /* Título de exibição: condensado, caixa-alta. */
 .display {
   font-weight: 800;

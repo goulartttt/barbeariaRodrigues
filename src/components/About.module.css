@@ -183,3 +183,27 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* No celular a foto vai para cima e o texto ganha a largura toda. */
+@media (max-width: 29.99rem) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portrait {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .portrait img {
+    object-position: 50% 15%;
+  }
+
+  .portrait:has(.monogram) {
+    aspect-ratio: 5 / 2;
+  }
+
+  .cardBody {
+    padding: var(--space-4) var(--space-5) var(--space-5);
+  }
+}

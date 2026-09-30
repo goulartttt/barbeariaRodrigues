@@ -40,7 +40,7 @@ export function About() {
             Desde {business.since} <span>na {address.neighborhood}.</span>
           </h2>
           <p className={styles.lead} data-reveal>
-            A Rodrigues fica na {address.street}, {address.number}, na {address.region} de{" "}
+            A Rodrigues fica na {address.streetDisplay}, {address.number}, na {address.region} de{" "}
             {address.city}. Nas avaliações do Google, os clientes destacam {themes}.
           </p>
         </div>
@@ -71,7 +71,7 @@ export function About() {
           </ul>
           <div data-reveal>
             <ActionLink href={business.booking.url} external icon={<ArrowUpRight />} variant="secondary">
-              Escolher barbeiro na agenda
+              Escolher barbeiro
             </ActionLink>
           </div>
         </div>

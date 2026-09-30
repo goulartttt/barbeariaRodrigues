@@ -72,7 +72,7 @@ export function SiteFooter() {
         <div className={styles.col}>
           <h2 className={styles.heading}>Endereço</h2>
           <address>
-            {address.street}, {address.number}
+            {address.streetDisplay}, {address.number}
             <br />
             {address.neighborhood}, {address.city} - {address.state}
             <br />

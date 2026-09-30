@@ -17,6 +17,8 @@ const address = {
   state: "SP",
   postalCode: "02408-131",
 };
+/** Nome da rua para exibir no texto: o "R." não fica sozinho no fim da linha. */
+address.streetDisplay = address.street.replace(/^R\.\s*/, "R.\u00a0");
 address.full = `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.postalCode}`;
 
 const phoneE164 = "+5511971904140";

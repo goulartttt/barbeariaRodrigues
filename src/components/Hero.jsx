@@ -34,7 +34,7 @@ export function Hero() {
 
           <p className={styles.lead} data-hero-reveal>
             Corte, barba e acabamento na navalha com o Farlen e o Raphael, na{" "}
-            {address.street}, {address.number}.
+            {address.streetDisplay}, {address.number}.
           </p>
 
           <div className={styles.actions} data-hero-actions data-hero-reveal>
