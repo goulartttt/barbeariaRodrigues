@@ -1,15 +1,33 @@
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto;
   z-index: 20;
-  background: var(--paper);
+  background: rgb(11 10 9 / 0.78);
+  backdrop-filter: blur(14px) saturate(1.2);
   border-bottom: 1px solid var(--line);
+}
+
+/* Onde o navegador suporta, o cabeçalho começa transparente sobre o hero e ganha fundo ao rolar. */
+@supports (animation-timeline: scroll()) {
+  .header {
+    animation: solidify linear both;
+    animation-timeline: scroll();
+    animation-range: 0 12rem;
+  }
+
+  @keyframes solidify {
+    from {
+      background: rgb(11 10 9 / 0);
+      border-bottom-color: transparent;
+      backdrop-filter: none;
+    }
+  }
 }
 
 .inner {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--space-6);
   height: var(--header-h);
 }
 
@@ -20,16 +38,19 @@
 
 .nav ul {
   display: flex;
-  gap: 2rem;
+  gap: var(--space-6);
 }
 
 .nav a {
   position: relative;
+  display: inline-block;
+  /* Área de clique com pelo menos 24px de altura. */
+  padding-block: 0.375rem;
   font-size: var(--text-sm);
   font-weight: 500;
   text-decoration: none;
-  color: var(--ink-soft);
-  transition: color 200ms var(--ease-out);
+  color: var(--fg-muted);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .nav a::after {
@@ -37,30 +58,39 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.3rem;
+  bottom: 0;
   height: 1px;
-  background: currentColor;
+  background: var(--accent);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 320ms var(--ease-out);
+  transition: transform var(--dur) var(--ease-out);
 }
 
-.nav a:hover {
-  color: var(--ink);
+.nav a:hover,
+.nav a[aria-current] {
+  color: var(--fg);
 }
 
-.nav a:hover::after {
+.nav a:hover::after,
+.nav a[aria-current]::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
 .cta {
   min-height: 2.625rem;
-  padding: 0 1rem;
+  padding: 0 1.125rem;
+  font-size: var(--text-xs);
 }
 
-@media (max-width: 47.99rem) {
+@media (max-width: 63.99rem) {
   .nav {
     display: none;
+  }
+}
+
+@media (max-width: 29.99rem) {
+  .cta {
+    width: auto;
   }
 }

@@ -6,16 +6,17 @@
 }
 
 .name {
-  font-size: 1.1875rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.02em;
-  font-variation-settings: "wdth" 72;
+  letter-spacing: 0.04em;
+  font-variation-settings: "wdth" 80;
 }
 
 .kind {
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   font-size: 0.625rem;
   font-weight: 500;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.46em;
+  color: var(--accent);
   font-variation-settings: "wdth" 125;
 }

@@ -1,37 +1,94 @@
 .section {
-  padding-block: var(--section-y) calc(var(--section-y) * 0.75);
+  position: relative;
+  overflow: hidden;
+  padding-block: calc(var(--section-y) * 0.6) var(--section-y);
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(60% 80% at 85% 100%, rgb(184 146 90 / 0.14), transparent 70%),
+    var(--bg);
+}
+
+/* Palavras vazadas passando devagar atrás do título. */
+.marquee {
+  margin-bottom: var(--space-7);
+  user-select: none;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+}
+
+.group {
+  display: flex;
+  flex: none;
+}
+
+.word {
+  padding-right: 0.6em;
+  font-size: clamp(3.5rem, 2rem + 6vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  font-variation-settings: "wdth" var(--wdth-display);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+}
+
+.word::after {
+  content: "·";
+  padding-left: 0.6em;
+  -webkit-text-stroke: 0;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
 }
 
 .inner {
   display: grid;
-  gap: 2.5rem;
+  gap: var(--space-6);
 }
 
 .title {
-  font-size: clamp(3.25rem, 1rem + 9vw, 9.5rem);
+  font-size: clamp(3.5rem, 1rem + 7vw, 8rem);
+  font-weight: 300;
+}
+
+.title span {
+  display: block;
   font-weight: 800;
-  line-height: 0.86;
-  letter-spacing: -0.045em;
-  font-variation-settings: "wdth" 72;
-  text-wrap: balance;
+  color: var(--accent-hover);
 }
 
 .side {
   display: grid;
   align-content: end;
-  gap: 1.75rem;
+  gap: var(--space-5);
 }
 
 .note {
   max-width: 28rem;
-  color: var(--on-ink-muted);
+  color: var(--fg-muted);
+  font-size: var(--text-lg);
   text-wrap: pretty;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 @media (max-width: 29.99rem) {
@@ -51,6 +108,6 @@
   }
 
   .side {
-    grid-column: 9 / -1;
+    grid-column: 8 / -1;
   }
 }

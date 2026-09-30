@@ -1,15 +1,17 @@
+/* Barra do celular */
 .bar {
   position: fixed;
   inset: auto 0 0;
   z-index: 30;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0.5rem;
+  gap: var(--space-2);
   padding: 0.625rem var(--gutter) calc(0.625rem + env(safe-area-inset-bottom));
-  background: var(--paper);
+  background: rgb(11 10 9 / 0.88);
+  backdrop-filter: blur(14px);
   border-top: 1px solid var(--line);
   transform: translateY(100%);
-  transition: transform 320ms var(--ease-out);
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .bar[data-visible="true"] {
@@ -21,27 +23,91 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   min-height: 3rem;
   padding: 0 1.125rem;
   border-radius: var(--radius);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
   text-decoration: none;
 }
 
 .primary {
-  background: var(--placa);
-  color: var(--placa-text);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .secondary {
-  border: 1px solid var(--ink);
-  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  color: var(--fg);
+}
+
+/* Botão redondo do computador */
+.float {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 30;
+  display: none;
+  align-items: center;
+  gap: 0;
+  height: 3.75rem;
+  padding: 0 1.0625rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: var(--shadow-accent);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(1rem) scale(0.9);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out), gap var(--dur) var(--ease-out);
+}
+
+.float[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* O texto desliza para fora ao passar o mouse ou focar. */
+.floatLabel {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: max-width var(--dur) var(--ease-out);
+}
+
+.float:hover,
+.float:focus-visible {
+  gap: var(--space-3);
+  background: var(--accent-hover);
+}
+
+.float:hover .floatLabel,
+.float:focus-visible .floatLabel {
+  max-width: 12rem;
 }
 
 @media (min-width: 48rem) {
   .bar {
     display: none;
+  }
+
+  .float {
+    display: inline-flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .float {
+    transition: none;
   }
 }

@@ -1,5 +1,8 @@
 export const navItems = [
-  { href: "#servicos", label: "Serviços" },
+  { href: "#precos", label: "Preços" },
+  { href: "#sobre", label: "A barbearia" },
+  { href: "#galeria", label: "Galeria" },
   { href: "#avaliacoes", label: "Avaliações" },
   { href: "#local", label: "Como chegar" },
+  { href: "#duvidas", label: "Dúvidas" },
 ];

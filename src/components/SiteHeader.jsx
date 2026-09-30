@@ -2,6 +2,7 @@ import { business } from "@/content/business";
 import { navItems } from "@/content/navigation";
 import { ActionLink } from "./ActionLink";
 import { ArrowUpRight } from "./icons";
+import { NavSpy } from "./NavSpy";
 import { Wordmark } from "./Wordmark";
 import styles from "./SiteHeader.module.css";
 
@@ -22,6 +23,7 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
+        <NavSpy />
 
         <ActionLink
           href={business.booking.url}

@@ -1,6 +1,7 @@
-import { business, reviewThemes } from "@/content/business";
+import { business, testimonials } from "@/content/business";
 import { ArrowUpRight, Stars } from "./icons";
 import { ExternalLink } from "./ExternalLink";
+import { ReviewsCarousel } from "./ReviewsCarousel";
 import styles from "./Reviews.module.css";
 
 export function Reviews() {
@@ -10,39 +11,28 @@ export function Reviews() {
     <section id="avaliacoes" className={styles.section} aria-labelledby="avaliacoes-title">
       <div className={`container ${styles.grid}`}>
         <div className={styles.score}>
-          <p className={styles.rating}>
+          <p className="eyebrow" data-reveal>
+            Avaliações
+          </p>
+          <h2 id="avaliacoes-title" className="visually-hidden">
+            O que dizem os clientes
+          </h2>
+          <p className={styles.rating} data-reveal>
             <span className={styles.number}>{rating}</span>
             <span className="visually-hidden"> de 5 estrelas</span>
           </p>
           <Stars size={22} className={styles.stars} />
-          <p className={styles.count}>
+          <p className={styles.count} data-reveal>
             {reviewCount} avaliações no Google
             <span className={styles.checked}>Consultado em {checkedAt}.</span>
           </p>
-          <p className={styles.welcome}>Empresa que acolhe a comunidade LGBTQ+.</p>
-        </div>
-
-        <div className={styles.body}>
-          <h2 id="avaliacoes-title" className={styles.title}>
-            O que os clientes mais destacam
-          </h2>
-
-          <ul className={styles.themes}>
-            {reviewThemes.map((theme) => (
-              <li key={theme}>{theme}</li>
-            ))}
-          </ul>
-
-          <p className={styles.mention}>
-            Em uma das avaliações, o <strong>Farlen</strong> é elogiado por ser cuidadoso,
-            profissional e atencioso.
-          </p>
-
           <ExternalLink href={business.maps.profile} className={styles.link}>
-            Ler as avaliações no Google
+            Ler todas no Google
             <ArrowUpRight size={16} />
           </ExternalLink>
         </div>
+
+        <ReviewsCarousel items={testimonials} />
       </div>
     </section>
   );
