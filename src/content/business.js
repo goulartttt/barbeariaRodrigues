@@ -1,6 +1,7 @@
 /**
  * Única fonte dos fatos do negócio exibidos no site.
- * Tudo aqui foi fornecido pelo dono ou consta no perfil do Google.
+ * Tudo aqui foi fornecido pelo dono, consta no perfil do Google ou aparece
+ * na fachada da barbearia (fotos enviadas pelo dono).
  * Não adicione preços, horários, equipe, redes sociais ou depoimentos
  * sem confirmação do dono.
  */
@@ -16,9 +17,12 @@ const address = {
   state: "SP",
   postalCode: "02408-131",
 };
+/** Nome da rua para exibir no texto: o "R." não fica sozinho no fim da linha. */
+address.streetDisplay = address.street.replace(/^R\.\s*/, "R.\u00a0");
 address.full = `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.postalCode}`;
 
 const phoneE164 = "+5511971904140";
+const whatsappNumber = "5511971904140";
 const mapsQuery = encodeURIComponent(`${name}, ${address.full}`);
 
 export const business = {
@@ -29,6 +33,18 @@ export const business = {
     e164: phoneE164,
     href: `tel:${phoneE164}`,
   },
+  /** O mesmo número aparece com o ícone do WhatsApp no toldo e na placa da fachada. */
+  whatsapp: {
+    display: "(11) 97190-4140",
+    href: `https://wa.me/${whatsappNumber}`,
+  },
+  /** Perfil confirmado pelo dono em 30/09/2026. */
+  instagram: {
+    handle: "@rodriguesbarbeariazn",
+    url: "https://www.instagram.com/rodriguesbarbeariazn/",
+  },
+  /** Ano de abertura, que aparece no logo. Confirmado pelo dono em 30/09/2026. */
+  since: 2016,
   booking: {
     url: "https://topsalao.com/?id=98939",
     provider: "TopSalão",
@@ -36,6 +52,8 @@ export const business = {
   maps: {
     profile: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
     directions: `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`,
+    /** Mapa embutido na seção "Como chegar" (não precisa de chave de API). */
+    embed: `https://maps.google.com/maps?q=${mapsQuery}&z=16&output=embed`,
   },
   google: {
     rating: "5,0",
@@ -45,16 +63,23 @@ export const business = {
   },
 };
 
-/** Serviços listados no perfil do Google. */
+/** Serviços listados na aba "Serviços" do perfil do Google (enviados pelo dono em 30/09/2026). */
 export const services = [
   "Corte de cabelo",
-  "Barba",
-  "Corte infantil",
-  "Tratamentos capilares",
-  "Progressiva e alisamento",
-  "Coloração",
+  "Aparar a barba",
+  "Cortes infantis",
+  "Luzes no cabelo",
+  "Alisamentos de cabelo",
+  "Escova progressiva",
+  "Coloração de cabelo",
+  "Cabelo ombré",
+  "Brilho capilar",
+  "Tratamentos de hidratação capilar",
+  "Cabelos cacheados",
+  "Aparar a franja",
   "Penteados",
-  "Prótese capilar",
+  "Prótese capilar masculina",
+  "Manutenção de prótese capilar",
 ];
 
 /** Temas recorrentes nas avaliações do Google (resumo, não citações). */
@@ -64,4 +89,122 @@ export const reviewThemes = [
   "Preço justo",
   "Ambiente limpo e agradável",
   "O corte sai como foi pedido",
+];
+
+/** Tabela de preços enviada pelo dono. Ao mudar valores, atualize `pricesCheckedAt`. */
+export const pricesCheckedAt = "setembro de 2026";
+
+/** `plan: true` marca o plano mensal, destacado na tabela. */
+export const prices = [
+  { name: "Corte", price: 40 },
+  { name: "Barba", price: 35 },
+  { name: "Cabelo e barba", price: 65 },
+  { name: "Corte navalhado", price: 45 },
+  { name: "Corte mais alisamento", price: 65 },
+  { name: "Platinado ou luzes + corte", price: 140 },
+  { name: "2 cortes no mês", price: 70, plan: true },
+];
+
+/** Serviços do Google que não estão na tabela de preços (valor na agenda online). */
+export const otherServices = [
+  "Cortes infantis",
+  "Escova progressiva",
+  "Coloração",
+  "Cabelo ombré",
+  "Brilho capilar",
+  "Hidratação capilar",
+  "Cabelos cacheados",
+  "Aparar a franja",
+  "Penteados",
+  "Prótese capilar masculina",
+  "Manutenção de prótese",
+];
+
+/** Horário de funcionamento do perfil do Google, enviado pelo dono em 30/09/2026. */
+export const openingHours = [
+  { day: "Segunda", dayCode: "Mo", closed: true },
+  { day: "Terça", dayCode: "Tu", opens: "09:00", closes: "20:00" },
+  { day: "Quarta", dayCode: "We", opens: "09:00", closes: "20:00" },
+  { day: "Quinta", dayCode: "Th", opens: "09:00", closes: "20:00" },
+  { day: "Sexta", dayCode: "Fr", opens: "09:00", closes: "20:00" },
+  { day: "Sábado", dayCode: "Sa", opens: "09:00", closes: "18:00" },
+  { day: "Domingo", dayCode: "Su", closed: true },
+];
+
+/**
+ * Profissionais listados na TopSalão. `note` só com o que consta nas avaliações do Google.
+ * TODO: foto do Raphael (o dono ainda não tem).
+ */
+export const team = [
+  {
+    name: "Farlen",
+    role: "Barbeiro",
+    photo: "/images/fotos/farlen-atendendo.jpg",
+    photoAlt: "Farlen, de chapéu, cortando o cabelo de um cliente no salão",
+    note: "Elogiado nas avaliações por ser cuidadoso, profissional e atencioso.",
+  },
+  { name: "Raphael", role: "Barbeiro", photo: null },
+];
+
+/** Fotos de trabalhos enviadas pelo dono. Mais fotos virão do Instagram. */
+export const gallery = [
+  {
+    src: "/images/fotos/corte-topete-barba.jpg",
+    alt: "Cliente de perfil com degradê na lateral, topete e barba desenhada",
+    caption: "Degradê com topete e barba",
+  },
+  {
+    src: "/images/fotos/corte-infantil.jpg",
+    alt: "Menino de perfil com corte degradê e riscos na lateral",
+    caption: "Corte infantil com risco",
+  },
+  {
+    src: "/images/fotos/fachada-mesas.jpg",
+    alt: "Fachada da barbearia com mesinhas e guarda-sol na calçada",
+    caption: "A calçada da Mariquinha Viana",
+  },
+];
+
+/**
+ * Avaliações do Google coladas pelo dono em 30/09/2026 (todas 5 estrelas).
+ * Texto fiel ao original: só foram cortados trechos (…) e corrigidos erros pequenos de digitação.
+ * Nome exibido: primeiro nome e inicial do sobrenome.
+ */
+export const testimonials = [
+  {
+    author: "Eduardo F.",
+    text: "Fiz o agendamento para o meu primeiro corte, tudo certo no horário, corte exatamente do jeito que eu pedi. Melhor custo-benefício da região.",
+  },
+  {
+    author: "Alexandre L.",
+    text: "Recomendo o Farlen, cuidadoso, zeloso e profissional. Nota 10, tanto barba como cabelo.",
+  },
+  {
+    author: "Rodrigo M.",
+    text: "Raphael, atendimentos de 20 estrelas! Sem tempo ruim!",
+  },
+  {
+    author: "Bruno R.",
+    text: "Já sou cliente e amigo de todos há anos… Excelente atendimento e ótimos cortes. Além do atendimento, ambiente alegre e risada garantida.",
+  },
+  {
+    author: "Flávio G.",
+    text: "Ótimo atendimento, profissionais de primeira. Cortei o meu e do meu filho.",
+  },
+  {
+    author: "Plinio S.",
+    text: "Melhor barbeiro da Zona Norte. Recomendo.",
+  },
+  {
+    author: "Mozart F.",
+    text: "Bom ambiente, corte correto e preço justo. Recomendo.",
+  },
+  {
+    author: "Janaina M.",
+    text: "Meu filho amou o corte. Ótimo salão para corte masculino.",
+  },
+  {
+    author: "Renan S.",
+    text: "Atendimento e trabalho impecáveis!",
+  },
 ];

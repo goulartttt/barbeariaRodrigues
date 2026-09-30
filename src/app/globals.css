@@ -1,39 +1,72 @@
 :root {
-  /* Cor */
-  --paper: #f3efe8;
-  --paper-deep: #e8e1d5;
-  --ink: #15130f;
-  --ink-soft: #3a352e;
-  --muted: #655d52;
-  --line: rgb(21 19 15 / 0.14);
-  --line-strong: rgb(21 19 15 / 0.32);
+  color-scheme: dark;
 
-  --on-ink: #efe9df;
-  --on-ink-muted: #a69d90;
-  --on-ink-line: rgb(239 233 223 / 0.16);
+  /* ── Paleta base: o preto e a pedra da fachada, com bronze fosco ── */
+  --color-black: #0b0a09;
+  --color-coal: #131110;
+  --color-graphite: #1f1c18;
+  --color-bone: #efe7d8;
+  --color-bone-muted: #a89f91;
+  --color-bronze: #b8925a;
+  --color-bronze-hi: #d4b07a;
+  /* Azul das placas de rua de São Paulo: só no endereço. */
+  --color-placa: #1d3e7a;
+  /* Vermelho do poste de barbeiro: só no poste. */
+  --color-barber-red: #8e2b25;
 
-  /* Azul das placas de rua de São Paulo: o único acento do site. */
-  --placa: #1d3e7a;
-  --placa-hover: #26509c;
-  --placa-text: #ffffff;
+  /* ── Papéis ── */
+  --bg: var(--color-black);
+  --bg-raised: var(--color-coal);
+  --surface: var(--color-graphite);
+  --fg: var(--color-bone);
+  --fg-muted: var(--color-bone-muted);
+  --line: rgb(239 231 216 / 0.12);
+  --line-strong: rgb(239 231 216 / 0.32);
+  --accent: var(--color-bronze);
+  --accent-hover: var(--color-bronze-hi);
+  --on-accent: var(--color-black);
 
-  /* Tipografia */
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  /* ── Tipografia: Archivo, condensada nos títulos ── */
+  --font-sans: var(--font-archivo), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+  --wdth-display: 62;
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
-  --text-lg: clamp(1.1875rem, 1.05rem + 0.5vw, 1.375rem);
+  --text-lg: clamp(1.125rem, 1.02rem + 0.45vw, 1.3125rem);
   --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
-  --text-2xl: clamp(2.25rem, 1.6rem + 2.8vw, 4rem);
+  --text-2xl: clamp(2.75rem, 1.8rem + 4vw, 5rem);
+  --text-3xl: clamp(4rem, 1.6rem + 10.5vw, 10.5rem);
 
-  /* Espaço e layout */
-  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3rem);
+  /* ── Espaço e layout ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3.5rem);
   --section-y: clamp(4.5rem, 3rem + 7vw, 9rem);
-  --max-width: 88rem;
-  --radius: 4px;
-  --header-h: 4.25rem;
+  --max-width: 90rem;
+  --header-h: 4.5rem;
 
+  /* ── Raios e sombras ── */
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-pill: 999px;
+  --shadow-raised: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 18px 40px rgb(0 0 0 / 0.4);
+  --shadow-accent: 0 12px 32px rgb(184 146 90 / 0.22);
+
+  /* ── Movimento ── */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 200ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+
+  /* Placa de rua azul (só no endereço). */
+  --placa: var(--color-placa);
+  --placa-text: #ffffff;
 }
 
 *,
@@ -64,8 +97,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.55;
@@ -102,12 +135,12 @@ svg {
 }
 
 ::selection {
-  background: var(--placa);
-  color: var(--placa-text);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 :focus-visible {
-  outline: 2px solid var(--placa);
+  outline: 2px solid var(--accent-hover);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -130,8 +163,8 @@ svg {
   left: 0.75rem;
   z-index: 100;
   padding: 0.75rem 1rem;
-  background: var(--ink);
-  color: var(--on-ink);
+  background: var(--accent);
+  color: var(--on-accent);
   font-weight: 600;
   text-decoration: none;
   transform: translateY(-200%);
@@ -148,21 +181,28 @@ svg {
   padding-inline: var(--gutter);
 }
 
-/* Seções escuras: componentes que herdam cor usam esta classe para inverter estados. */
-.on-ink {
-  background: var(--ink);
-  color: var(--on-ink);
-}
-
-.on-ink :focus-visible {
-  outline-color: var(--on-ink);
-}
-
 /* Rótulo de seção: pequeno, em caixa-alta e com largura expandida. */
 .eyebrow {
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  color: var(--accent);
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   font-variation-settings: "wdth" 115;
+}
+
+/* No celular o espaçamento largo quebrava rótulos curtos em duas linhas. */
+@media (max-width: 47.99rem) {
+  .eyebrow {
+    letter-spacing: 0.18em;
+  }
+}
+
+/* Título de exibição: condensado, caixa-alta. */
+.display {
+  font-weight: 800;
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-wrap: balance;
+  font-variation-settings: "wdth" var(--wdth-display);
 }

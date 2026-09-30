@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { business } from "@/content/business";
-import { ArrowUpRight, Phone } from "./icons";
+import { ArrowUpRight, WhatsApp } from "./icons";
 import { ExternalLink } from "./ExternalLink";
 import styles from "./MobileActionBar.module.css";
 
 /**
- * Barra fixa de agendamento no celular. Aparece só quando os botões
- * do topo e da chamada final estão fora da tela, para não duplicá-los.
+ * Ações fixas: no celular, uma barra com "Agendar" e WhatsApp; no computador,
+ * um botão redondo de WhatsApp no canto. Aparecem só quando os botões do topo
+ * e da chamada final estão fora da tela, para não duplicá-los.
  */
 export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
@@ -33,15 +34,28 @@ export function MobileActionBar() {
   }, []);
 
   return (
-    <div className={styles.bar} data-visible={visible} aria-hidden={!visible} inert={!visible}>
-      <ExternalLink href={business.booking.url} className={styles.primary}>
-        Agendar horário
-        <ArrowUpRight size={16} />
+    <>
+      <div className={styles.bar} data-visible={visible} aria-hidden={!visible} inert={!visible}>
+        <ExternalLink href={business.booking.url} className={styles.primary}>
+          Agendar
+          <ArrowUpRight size={16} />
+        </ExternalLink>
+        <ExternalLink href={business.whatsapp.href} className={styles.secondary}>
+          <WhatsApp size={18} />
+          <span>WhatsApp</span>
+        </ExternalLink>
+      </div>
+
+      <ExternalLink
+        href={business.whatsapp.href}
+        className={styles.float}
+        data-visible={visible}
+        aria-hidden={!visible}
+        inert={!visible}
+      >
+        <WhatsApp size={26} />
+        <span className={styles.floatLabel}>Fale no WhatsApp</span>
       </ExternalLink>
-      <a href={business.phone.href} className={styles.secondary}>
-        <Phone size={18} />
-        <span>Ligar</span>
-      </a>
-    </div>
+    </>
   );
 }
