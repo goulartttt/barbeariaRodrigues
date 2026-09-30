@@ -19,6 +19,16 @@
   width: min(66%, 64rem);
 }
 
+/* No computador a cena encolhe (ela é ajustada pela altura) e vai para o
+   canto de cima, para não passar atrás do título. */
+@media (min-width: 64rem) {
+  .scene {
+    inset: var(--header-h) -5% auto auto;
+    width: 60%;
+    height: 70%;
+  }
+}
+
 .stage {
   width: 100%;
   height: 100%;
