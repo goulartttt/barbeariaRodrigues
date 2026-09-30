@@ -160,3 +160,35 @@ export const gallery = [
     caption: "A calçada da Mariquinha Viana",
   },
 ];
+
+/**
+ * Avaliações do Google coladas pelo dono em 30/09/2026 (todas 5 estrelas).
+ * Texto fiel ao original: só foram cortados trechos (…) e corrigidos erros pequenos de digitação.
+ * Nome exibido: primeiro nome e inicial do sobrenome.
+ */
+export const testimonials = [
+  {
+    author: "Eduardo F.",
+    text: "Fiz o agendamento para o meu primeiro corte, tudo certo no horário, corte exatamente do jeito que eu pedi. Melhor custo-benefício da região.",
+  },
+  {
+    author: "Alexandre L.",
+    text: "Recomendo o Farlen, cuidadoso, zeloso e profissional. Nota 10, tanto barba como cabelo.",
+  },
+  {
+    author: "Rodrigo M.",
+    text: "Raphael, atendimentos de 20 estrelas! Sem tempo ruim!",
+  },
+  {
+    author: "Bruno R.",
+    text: "Já sou cliente e amigo de todos há anos… Excelente atendimento e ótimos cortes. Além do atendimento, ambiente alegre e risada garantida.",
+  },
+  {
+    author: "Flávio G.",
+    text: "Ótimo atendimento, profissionais de primeira. Cortei o meu e do meu filho.",
+  },
+  {
+    author: "Plinio S.",
+    text: "Melhor barbeiro da Zona Norte. Recomendo.",
+  },
+];
