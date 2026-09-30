@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { ClosingCta } from "@/components/ClosingCta";
+import { Faq } from "@/components/Faq";
 import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
 import { MobileActionBar } from "@/components/MobileActionBar";
@@ -23,6 +24,7 @@ export default function HomePage() {
         <Gallery />
         <Reviews />
         <Visit />
+        <Faq />
         <ClosingCta />
       </main>
       <SiteFooter />
