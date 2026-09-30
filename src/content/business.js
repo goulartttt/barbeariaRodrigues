@@ -141,3 +141,22 @@ export const team = [
   },
   { name: "Raphael", role: "Barbeiro", photo: null },
 ];
+
+/** Fotos de trabalhos enviadas pelo dono. Mais fotos virão do Instagram. */
+export const gallery = [
+  {
+    src: "/images/fotos/corte-topete-barba.jpg",
+    alt: "Cliente de perfil com degradê na lateral, topete e barba desenhada",
+    caption: "Degradê com topete e barba",
+  },
+  {
+    src: "/images/fotos/corte-infantil.jpg",
+    alt: "Menino de perfil com corte degradê e riscos na lateral",
+    caption: "Corte infantil com risco",
+  },
+  {
+    src: "/images/fotos/fachada-mesas.jpg",
+    alt: "Fachada da barbearia com mesinhas e guarda-sol na calçada",
+    caption: "A calçada da Mariquinha Viana",
+  },
+];

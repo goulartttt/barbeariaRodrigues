@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { ClosingCta } from "@/components/ClosingCta";
+import { Gallery } from "@/components/Gallery";
 import { Hero } from "@/components/Hero";
 import { MobileActionBar } from "@/components/MobileActionBar";
 import { Reviews } from "@/components/Reviews";
@@ -19,6 +20,7 @@ export default function HomePage() {
         <StatsStrip />
         <Prices />
         <About />
+        <Gallery />
         <Reviews />
         <Visit />
         <ClosingCta />
