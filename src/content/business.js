@@ -191,4 +191,16 @@ export const testimonials = [
     author: "Plinio S.",
     text: "Melhor barbeiro da Zona Norte. Recomendo.",
   },
+  {
+    author: "Mozart F.",
+    text: "Bom ambiente, corte correto e preço justo. Recomendo.",
+  },
+  {
+    author: "Janaina M.",
+    text: "Meu filho amou o corte. Ótimo salão para corte masculino.",
+  },
+  {
+    author: "Renan S.",
+    text: "Atendimento e trabalho impecáveis!",
+  },
 ];

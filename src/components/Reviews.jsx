@@ -1,6 +1,7 @@
 import { business, testimonials } from "@/content/business";
 import { ArrowUpRight, Stars } from "./icons";
 import { ExternalLink } from "./ExternalLink";
+import { ReviewsCarousel } from "./ReviewsCarousel";
 import styles from "./Reviews.module.css";
 
 export function Reviews() {
@@ -31,24 +32,7 @@ export function Reviews() {
           </ExternalLink>
         </div>
 
-        <ul className={styles.quotes}>
-          {testimonials.map((item) => (
-            <li key={item.author} className={styles.quote} data-reveal>
-              <figure>
-                <blockquote>
-                  <p>{item.text}</p>
-                </blockquote>
-                <figcaption>
-                  <span className={styles.author}>{item.author}</span>
-                  <span className={styles.source}>
-                    <Stars size={12} className={styles.miniStars} />
-                    no Google
-                  </span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
+        <ReviewsCarousel items={testimonials} />
       </div>
     </section>
   );

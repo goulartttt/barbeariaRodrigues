@@ -14,6 +14,22 @@ export function ArrowUpRight({ size = 18, className }) {
   );
 }
 
+export function ArrowLeft({ size = 18, className }) {
+  return (
+    <svg {...base(size)} className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M19 12H5m6-6-6 6 6 6" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+export function ArrowRight({ size = 18, className }) {
+  return (
+    <svg {...base(size)} className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M5 12h14m-6-6 6 6-6 6" strokeLinecap="square" />
+    </svg>
+  );
+}
+
 export function Phone({ size = 18, className }) {
   return (
     <svg {...base(size)} className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
