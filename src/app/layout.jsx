@@ -1,5 +1,5 @@
 import { Archivo } from "next/font/google";
-import { business, services } from "@/content/business";
+import { business, openingHours, prices, services } from "@/content/business";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -12,7 +12,7 @@ const archivo = Archivo({
 const { address, phone } = business;
 const place = `${address.neighborhood}, ${address.region} de ${address.city}`;
 const title = `${business.name} · ${place}`;
-const description = `Barbearia na ${place}. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou ligue ${phone.display}.`;
+const description = `Barbearia na ${place}. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou chame no WhatsApp ${phone.display}.`;
 
 export const metadata = {
   title,
@@ -35,6 +35,16 @@ export const viewport = {
   initialScale: 1,
 };
 
+const dayNames = {
+  Mo: "Monday",
+  Tu: "Tuesday",
+  We: "Wednesday",
+  Th: "Thursday",
+  Fr: "Friday",
+  Sa: "Saturday",
+  Su: "Sunday",
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
@@ -49,6 +59,17 @@ const structuredData = {
     addressCountry: "BR",
   },
   hasMap: business.maps.profile,
+  foundingDate: String(business.since),
+  sameAs: [business.instagram.url],
+  priceRange: `R$ ${Math.min(...prices.map((p) => p.price))} a R$ ${Math.max(...prices.map((p) => p.price))}`,
+  openingHoursSpecification: openingHours
+    .filter((day) => !day.closed)
+    .map((day) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: `https://schema.org/${dayNames[day.dayCode]}`,
+      opens: day.opens,
+      closes: day.closes,
+    })),
   potentialAction: {
     "@type": "ReserveAction",
     target: business.booking.url,

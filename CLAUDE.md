@@ -38,5 +38,5 @@ Não há lint nem testes automatizados configurados. Para validar mudanças visu
 - Fonte Archivo via `next/font` com o eixo `wdth`, usado em `font-variation-settings`.
 - **Fatos do negócio** (endereço, telefone, agenda TopSalão, nota do Google, serviços, temas das avaliações) ficam só em `src/content/business.js`. Metadados, dados estruturados (`HairSalon`) e todas as seções leem dali; o FAQ (`src/content/faq.js`) monta as respostas a partir desses fatos. Nunca invente preços, horários, equipe, redes sociais ou depoimentos: use TODO e pergunte ao dono. Ao atualizar a nota do Google, atualize `checkedAt`.
 - Links externos usam `ExternalLink` (nova aba + aviso para leitores de tela); botões usam `ActionLink`.
-- `MobileActionBar` (componente cliente) aparece no celular quando os botões do hero e da chamada final saem da tela (marcadores `data-hero-actions` e `data-closing-actions`).
+- `MobileActionBar` (componente cliente) mostra as ações fixas quando os botões do hero e da chamada final saem da tela (marcadores `data-hero-actions` e `data-closing-actions`): barra "Agendar" + WhatsApp no celular e botão redondo de WhatsApp no computador.
 - Ainda não há fotos reais da barbearia; quando houver, vão em `public/images/` com `next/image`.

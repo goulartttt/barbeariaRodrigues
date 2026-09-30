@@ -4,4 +4,5 @@ export const navItems = [
   { href: "#galeria", label: "Galeria" },
   { href: "#avaliacoes", label: "Avaliações" },
   { href: "#local", label: "Como chegar" },
+  { href: "#duvidas", label: "Dúvidas" },
 ];

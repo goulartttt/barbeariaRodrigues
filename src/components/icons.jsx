@@ -30,6 +30,16 @@ export function ArrowRight({ size = 18, className }) {
   );
 }
 
+export function Instagram({ size = 18, className }) {
+  return (
+    <svg {...base(size)} className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.25" cy="6.75" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function Phone({ size = 18, className }) {
   return (
     <svg {...base(size)} className={className} fill="none" stroke="currentColor" strokeWidth="1.75">

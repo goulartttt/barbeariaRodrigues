@@ -64,17 +64,8 @@
   --dur: 420ms;
   --dur-slow: 900ms;
 
-  /* Nomes antigos, mantidos até cada seção ser refeita. TODO: remover no fim da fase 5. */
-  --paper: var(--bg);
-  --paper-deep: var(--bg-raised);
-  --ink: var(--color-black);
-  --ink-soft: var(--fg-muted);
-  --muted: var(--fg-muted);
-  --on-ink: var(--fg);
-  --on-ink-muted: var(--fg-muted);
-  --on-ink-line: var(--line);
+  /* Placa de rua azul (só no endereço). */
   --placa: var(--color-placa);
-  --placa-hover: #26509c;
   --placa-text: #ffffff;
 }
 
@@ -188,12 +179,6 @@ svg {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: var(--gutter);
-}
-
-/* Seções escuras: componentes que herdam cor usam esta classe para inverter estados. */
-.on-ink {
-  background: var(--bg-raised);
-  color: var(--fg);
 }
 
 /* Rótulo de seção: pequeno, em caixa-alta e com largura expandida. */
