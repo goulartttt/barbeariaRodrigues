@@ -41,7 +41,7 @@ export const business = {
     handle: "@rodrigues_barbeariazn",
     url: "https://www.instagram.com/rodrigues_barbeariazn/",
   },
-  /** Ano que aparece no logo ("2016"). TODO: confirmar com o dono que é o ano de fundação. */
+  /** Ano de abertura, que aparece no logo. Confirmado pelo dono em 30/09/2026. */
   since: 2016,
   booking: {
     url: "https://topsalao.com/?id=98939",
