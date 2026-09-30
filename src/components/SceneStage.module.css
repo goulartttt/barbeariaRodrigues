@@ -1,0 +1,24 @@
+.stage {
+  position: relative;
+  pointer-events: none;
+}
+
+.poster {
+  object-fit: contain;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.stage[data-ready="true"] .canvas {
+  opacity: 1;
+}
+
+.stage[data-ready="true"] .poster {
+  opacity: 0;
+}

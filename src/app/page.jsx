@@ -5,6 +5,7 @@ import { Reviews } from "@/components/Reviews";
 import { Services } from "@/components/Services";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StatsStrip } from "@/components/StatsStrip";
 import { Visit } from "@/components/Visit";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <SiteHeader />
       <main id="conteudo">
         <Hero />
+        <StatsStrip />
         <Services />
         <Reviews />
         <Visit />
