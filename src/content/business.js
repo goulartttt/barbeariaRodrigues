@@ -1,6 +1,7 @@
 /**
  * Única fonte dos fatos do negócio exibidos no site.
- * Tudo aqui foi fornecido pelo dono ou consta no perfil do Google.
+ * Tudo aqui foi fornecido pelo dono, consta no perfil do Google ou aparece
+ * na fachada da barbearia (fotos enviadas pelo dono).
  * Não adicione preços, horários, equipe, redes sociais ou depoimentos
  * sem confirmação do dono.
  */
@@ -19,6 +20,7 @@ const address = {
 address.full = `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.postalCode}`;
 
 const phoneE164 = "+5511971904140";
+const whatsappNumber = "5511971904140";
 const mapsQuery = encodeURIComponent(`${name}, ${address.full}`);
 
 export const business = {
@@ -29,6 +31,18 @@ export const business = {
     e164: phoneE164,
     href: `tel:${phoneE164}`,
   },
+  /** O mesmo número aparece com o ícone do WhatsApp no toldo e na placa da fachada. */
+  whatsapp: {
+    display: "(11) 97190-4140",
+    href: `https://wa.me/${whatsappNumber}`,
+  },
+  /** Aparece na placa e no toldo da fachada. */
+  instagram: {
+    handle: "@rodrigues_barbeariazn",
+    url: "https://www.instagram.com/rodrigues_barbeariazn/",
+  },
+  /** Ano que aparece no logo ("2016"). TODO: confirmar com o dono que é o ano de fundação. */
+  since: 2016,
   booking: {
     url: "https://topsalao.com/?id=98939",
     provider: "TopSalão",
@@ -64,4 +78,32 @@ export const reviewThemes = [
   "Preço justo",
   "Ambiente limpo e agradável",
   "O corte sai como foi pedido",
+];
+
+/** Tabela de preços enviada pelo dono em 30/09/2026. */
+export const prices = [
+  { name: "Corte", price: 40 },
+  { name: "Barba", price: 35 },
+  { name: "Cabelo e barba", price: 65 },
+  { name: "Corte navalhado", price: 45 },
+  { name: "Corte mais alisamento", price: 65 },
+  { name: "Platinado ou luzes + corte", price: 140 },
+  { name: "2 cortes no mês", price: 70 },
+];
+
+/** Horário de funcionamento do perfil do Google, enviado pelo dono em 30/09/2026. */
+export const openingHours = [
+  { day: "Segunda", dayCode: "Mo", closed: true },
+  { day: "Terça", dayCode: "Tu", opens: "09:00", closes: "20:00" },
+  { day: "Quarta", dayCode: "We", opens: "09:00", closes: "20:00" },
+  { day: "Quinta", dayCode: "Th", opens: "09:00", closes: "20:00" },
+  { day: "Sexta", dayCode: "Fr", opens: "09:00", closes: "20:00" },
+  { day: "Sábado", dayCode: "Sa", opens: "09:00", closes: "18:00" },
+  { day: "Domingo", dayCode: "Su", closed: true },
+];
+
+/** Profissionais listados na TopSalão. Só o Farlen tem foto por enquanto. */
+export const team = [
+  { name: "Farlen", role: "Barbeiro", photo: "/images/fotos/farlen-atendendo.png" },
+  { name: "Raphael", role: "Barbeiro", photo: null },
 ];
