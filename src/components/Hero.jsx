@@ -6,7 +6,7 @@ import { ArrowUpRight, WhatsApp } from "./icons";
 import { Rating } from "./Rating";
 import styles from "./Hero.module.css";
 
-const plan = prices.find((item) => item.name === "2 cortes no mês");
+const plan = prices.find((item) => item.plan);
 
 export function Hero() {
   const { address } = business;
@@ -49,7 +49,7 @@ export function Hero() {
           <div className={styles.proof} data-hero-reveal>
             <Rating />
             {plan && (
-              <a href="#servicos" className={styles.plan}>
+              <a href="#precos" className={styles.plan}>
                 Plano mensal: 2 cortes por <strong>R$ {plan.price}</strong>
               </a>
             )}

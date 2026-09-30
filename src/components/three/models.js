@@ -143,3 +143,79 @@ export function disposeObject(object) {
     });
   });
 }
+
+/** Textura das listras do poste: osso, vermelho, osso, azul, na diagonal. */
+function makeStripeTexture() {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const context = canvas.getContext("2d");
+  const image = context.createImageData(size, size);
+  const colors = [
+    [239, 231, 216],
+    [142, 43, 37],
+    [239, 231, 216],
+    [29, 62, 122],
+  ];
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const color = colors[(((x + y) % size) / (size / 4)) | 0];
+      const i = (y * size + x) * 4;
+      image.data[i] = color[0];
+      image.data[i + 1] = color[1];
+      image.data[i + 2] = color[2];
+      image.data[i + 3] = 255;
+    }
+  }
+  context.putImageData(image, 0, 0);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(2, 2.4);
+  texture.anisotropy = 8;
+  return texture;
+}
+
+/** Poste de barbeiro com tampas de bronze. `stripes` é a textura a animar. */
+export function makeBarberPole() {
+  const stripes = makeStripeTexture();
+  const bronze = makeBronze();
+  const pole = new THREE.Group();
+
+  pole.add(
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(0.5, 0.5, 3.2, 96, 1, true),
+      new THREE.MeshStandardMaterial({ map: stripes, roughness: 0.4 }),
+    ),
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(0.57, 0.57, 3.24, 96, 1, true),
+      new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        roughness: 0.04,
+        transparent: true,
+        opacity: 0.16,
+        clearcoat: 1,
+      }),
+    ),
+  );
+
+  const cap = new THREE.CylinderGeometry(0.68, 0.68, 0.24, 96);
+  const ring = new THREE.TorusGeometry(0.62, 0.035, 16, 96);
+  const parts = [
+    [cap, 1.72, 0],
+    [ring, 1.6, Math.PI / 2],
+    [new THREE.SphereGeometry(0.52, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2), 1.84, 0],
+    [new THREE.SphereGeometry(0.13, 32, 16), 2.46, 0],
+    [cap, -1.72, 0],
+    [ring, -1.6, Math.PI / 2],
+    [new THREE.ConeGeometry(0.34, 0.6, 64), -2.14, Math.PI],
+  ];
+  for (const [geometry, y, rotationX] of parts) {
+    const mesh = new THREE.Mesh(geometry, bronze);
+    mesh.position.y = y;
+    mesh.rotation.x = rotationX;
+    pole.add(mesh);
+  }
+
+  return { pole, stripes };
+}

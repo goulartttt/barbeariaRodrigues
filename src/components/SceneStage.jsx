@@ -20,32 +20,40 @@ function canRender3D() {
 
 /**
  * Palco de uma cena 3D: mostra a imagem estática na hora e só carrega o 3D
- * depois que a página terminou de carregar. Em aparelhos fracos ou com
+ * depois que a página terminou de carregar e a cena chegou perto da tela. Em aparelhos fracos ou com
  * "reduzir movimento", a imagem estática fica. Fora da tela, a cena pausa.
  */
 export function SceneStage({ Scene, poster, className, priority = false, sizes = "100vw" }) {
   const stage = useRef(null);
-  const [enabled, setEnabled] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const [active, setActive] = useState(false);
+  const [seen, setSeen] = useState(false);
   const [ready, setReady] = useState(false);
   const [slow, setSlow] = useState(false);
 
   useEffect(() => {
     if (!canRender3D()) return;
     const idle = window.requestIdleCallback ?? ((callback) => setTimeout(callback, 300));
-    const start = () => idle(() => setEnabled(true), { timeout: 3000 });
+    const start = () => idle(() => setLoaded(true), { timeout: 3000 });
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
     return () => window.removeEventListener("load", start);
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting), {
-      rootMargin: "200px 0px",
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setActive(entry.isIntersecting);
+        if (entry.isIntersecting) setSeen(true);
+      },
+      { rootMargin: "300px 0px" },
+    );
     observer.observe(stage.current);
     return () => observer.disconnect();
   }, []);
+
+  // Só baixa o 3D quando a cena chega perto da tela.
+  const enabled = loaded && seen;
 
   return (
     <div ref={stage} className={[styles.stage, className].filter(Boolean).join(" ")} data-ready={ready}>

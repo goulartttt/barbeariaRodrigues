@@ -80,7 +80,10 @@ export const reviewThemes = [
   "O corte sai como foi pedido",
 ];
 
-/** Tabela de preços enviada pelo dono em 30/09/2026. */
+/** Tabela de preços enviada pelo dono. Ao mudar valores, atualize `pricesCheckedAt`. */
+export const pricesCheckedAt = "setembro de 2026";
+
+/** `plan: true` marca o plano mensal, destacado na tabela. */
 export const prices = [
   { name: "Corte", price: 40 },
   { name: "Barba", price: 35 },
@@ -88,7 +91,17 @@ export const prices = [
   { name: "Corte navalhado", price: 45 },
   { name: "Corte mais alisamento", price: 65 },
   { name: "Platinado ou luzes + corte", price: 140 },
-  { name: "2 cortes no mês", price: 70 },
+  { name: "2 cortes no mês", price: 70, plan: true },
+];
+
+/** Serviços do perfil do Google que não estão na tabela de preços (valor na agenda online). */
+export const otherServices = [
+  "Corte infantil",
+  "Progressiva",
+  "Coloração",
+  "Tratamentos capilares",
+  "Penteados",
+  "Prótese capilar",
 ];
 
 /** Horário de funcionamento do perfil do Google, enviado pelo dono em 30/09/2026. */

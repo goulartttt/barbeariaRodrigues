@@ -31,13 +31,13 @@
 }
 
 .primary {
-  background: var(--placa);
-  color: var(--placa-text);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .secondary {
-  border: 1px solid var(--ink);
-  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  color: var(--fg);
 }
 
 @media (min-width: 48rem) {
