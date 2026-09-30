@@ -50,6 +50,8 @@ export const business = {
   maps: {
     profile: `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
     directions: `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`,
+    /** Mapa embutido na seção "Como chegar" (não precisa de chave de API). */
+    embed: `https://maps.google.com/maps?q=${mapsQuery}&z=16&output=embed`,
   },
   google: {
     rating: "5,0",
