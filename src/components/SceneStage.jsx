@@ -18,9 +18,36 @@ function canRender3D() {
   }
 }
 
+const interactionEvents = ["pointermove", "pointerdown", "touchstart", "wheel", "scroll", "keydown"];
+let interaction;
+
+/**
+ * Resolve depois do `load` e do primeiro sinal de uso (mexer o mouse, tocar,
+ * rolar ou teclar). Assim o 3D, que é pesado, não disputa o carregamento
+ * inicial; a imagem estática é igual à cena, então a troca não aparece.
+ */
+function afterFirstInteraction() {
+  interaction ??= new Promise((resolve) => {
+    const loaded = new Promise((done) => {
+      if (document.readyState === "complete") done();
+      else window.addEventListener("load", done, { once: true });
+    });
+    const used = new Promise((done) => {
+      const handler = () => {
+        interactionEvents.forEach((type) => window.removeEventListener(type, handler));
+        done();
+      };
+      interactionEvents.forEach((type) => window.addEventListener(type, handler, { passive: true }));
+    });
+    Promise.all([loaded, used]).then(resolve);
+  });
+  return interaction;
+}
+
 /**
  * Palco de uma cena 3D: mostra a imagem estática na hora e só carrega o 3D
- * depois que a página terminou de carregar e a cena chegou perto da tela. Em aparelhos fracos ou com
+ * depois que a página carregou, a pessoa começou a usar a página e a cena
+ * chegou perto da tela. Em aparelhos fracos ou com
  * "reduzir movimento", a imagem estática fica. Fora da tela, a cena pausa.
  */
 export function SceneStage({ Scene, poster, className, priority = false, sizes = "100vw" }) {
@@ -33,11 +60,14 @@ export function SceneStage({ Scene, poster, className, priority = false, sizes =
 
   useEffect(() => {
     if (!canRender3D()) return;
-    const idle = window.requestIdleCallback ?? ((callback) => setTimeout(callback, 300));
-    const start = () => idle(() => setLoaded(true), { timeout: 3000 });
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
-    return () => window.removeEventListener("load", start);
+    let cancelled = false;
+    afterFirstInteraction().then(() => {
+      const idle = window.requestIdleCallback ?? ((callback) => setTimeout(callback, 300));
+      idle(() => !cancelled && setLoaded(true), { timeout: 3000 });
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
