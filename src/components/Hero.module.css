@@ -105,6 +105,12 @@
     animation: rise 900ms var(--ease-out) both;
   }
 
+  /* O título é o maior elemento da tela (LCP): só desliza, sem começar invisível. */
+  .titleName,
+  .titleKind {
+    animation-name: slide;
+  }
+
   .titleName {
     animation-delay: 60ms;
   }
@@ -125,6 +131,12 @@
 @keyframes rise {
   from {
     opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes slide {
+  from {
     transform: translateY(14px);
   }
 }
