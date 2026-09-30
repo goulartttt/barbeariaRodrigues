@@ -59,16 +59,23 @@ export const business = {
   },
 };
 
-/** Serviços listados no perfil do Google. */
+/** Serviços listados na aba "Serviços" do perfil do Google (enviados pelo dono em 30/09/2026). */
 export const services = [
   "Corte de cabelo",
-  "Barba",
-  "Corte infantil",
-  "Tratamentos capilares",
-  "Progressiva e alisamento",
-  "Coloração",
+  "Aparar a barba",
+  "Cortes infantis",
+  "Luzes no cabelo",
+  "Alisamentos de cabelo",
+  "Escova progressiva",
+  "Coloração de cabelo",
+  "Cabelo ombré",
+  "Brilho capilar",
+  "Tratamentos de hidratação capilar",
+  "Cabelos cacheados",
+  "Aparar a franja",
   "Penteados",
-  "Prótese capilar",
+  "Prótese capilar masculina",
+  "Manutenção de prótese capilar",
 ];
 
 /** Temas recorrentes nas avaliações do Google (resumo, não citações). */
@@ -94,14 +101,19 @@ export const prices = [
   { name: "2 cortes no mês", price: 70, plan: true },
 ];
 
-/** Serviços do perfil do Google que não estão na tabela de preços (valor na agenda online). */
+/** Serviços do Google que não estão na tabela de preços (valor na agenda online). */
 export const otherServices = [
-  "Corte infantil",
-  "Progressiva",
+  "Cortes infantis",
+  "Escova progressiva",
   "Coloração",
-  "Tratamentos capilares",
+  "Cabelo ombré",
+  "Brilho capilar",
+  "Hidratação capilar",
+  "Cabelos cacheados",
+  "Aparar a franja",
   "Penteados",
-  "Prótese capilar",
+  "Prótese capilar masculina",
+  "Manutenção de prótese",
 ];
 
 /** Horário de funcionamento do perfil do Google, enviado pelo dono em 30/09/2026. */
@@ -115,8 +127,17 @@ export const openingHours = [
   { day: "Domingo", dayCode: "Su", closed: true },
 ];
 
-/** Profissionais listados na TopSalão. Só o Farlen tem foto por enquanto. */
+/**
+ * Profissionais listados na TopSalão. `note` só com o que consta nas avaliações do Google.
+ * TODO: foto do Raphael (o dono ainda não tem).
+ */
 export const team = [
-  { name: "Farlen", role: "Barbeiro", photo: "/images/fotos/farlen-atendendo.png" },
+  {
+    name: "Farlen",
+    role: "Barbeiro",
+    photo: "/images/fotos/farlen-atendendo.jpg",
+    photoAlt: "Farlen, de chapéu, cortando o cabelo de um cliente no salão",
+    note: "Elogiado nas avaliações por ser cuidadoso, profissional e atencioso.",
+  },
   { name: "Raphael", role: "Barbeiro", photo: null },
 ];

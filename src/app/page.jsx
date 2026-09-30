@@ -1,3 +1,4 @@
+import { About } from "@/components/About";
 import { ClosingCta } from "@/components/ClosingCta";
 import { Hero } from "@/components/Hero";
 import { MobileActionBar } from "@/components/MobileActionBar";
@@ -17,6 +18,7 @@ export default function HomePage() {
         <Hero />
         <StatsStrip />
         <Prices />
+        <About />
         <Reviews />
         <Visit />
         <ClosingCta />

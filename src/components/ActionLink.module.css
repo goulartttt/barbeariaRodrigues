@@ -78,5 +78,7 @@
 @media (max-width: 29.99rem) {
   .action {
     width: 100%;
+    white-space: normal;
+    text-align: center;
   }
 }
