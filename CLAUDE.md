@@ -21,12 +21,24 @@ Este arquivo orienta o Claude Code (claude.ai/code) ao trabalhar com o código d
 
 ## Branches e versões
 
-Há dois trilhos com numeração **independente**: `HML-Vx.y` (homologação, onde o Farlen testa) e `PROD-Vx.y` (produção, publicada pela Vercel). Não é preciso que os números coincidam. Por exemplo, `HML-V1.7` e `PROD-V1.4` podem existir ao mesmo tempo.
+Há dois trilhos de versão com numeração **independente**, cada um publicado pela Vercel num ambiente próprio:
 
-1. **Demanda nova:** veja no GitHub (`git fetch`) a última `HML-Vx.y` e crie a próxima (`HML-V1.2` → `HML-V1.3`) **a partir da última `PROD-Vx.y`**, para partir sempre do que está no ar.
-2. **Ajustes pedidos depois do teste** ficam na mesma HML. Um número novo só nasce com uma demanda nova, quando não há outra em andamento.
-3. **Aprovada em HML:** crie a próxima `PROD-Vx.y` (`PROD-V1.0` → `PROD-V1.1`) a partir da HML aprovada. O desenvolvedor troca manualmente a branch de produção na Vercel. As PROD antigas ficam guardadas para permitir voltar atrás.
-4. Nunca trabalhe nem faça merge em `main` ou nas branches `claude/*`.
+- `HML-Vx.y`: homologação, onde o Farlen testa.
+- `PROD-Vx.y`: produção, o site no ar.
+
+Os números não precisam coincidir: `HML-V1.7` e `PROD-V1.4` podem existir ao mesmo tempo. Cada versão nasce da anterior **do seu próprio trilho**. O trabalho em si acontece numa branch de demanda, que é o que viaja entre os trilhos.
+
+1. **Começar a demanda:** rode `git fetch` e crie a branch de demanda **a partir da última `PROD-Vx.y`**, com o prefixo do tipo:
+   - `feature/PROD-V1.1/troca-cor-botao`: algo novo;
+   - `refac/PROD-V1.1/<assunto>`: refatoração;
+   - `hotfix/PROD-V1.1/<assunto>`: correção de bug.
+2. **Subir para teste:** crie a próxima HML a partir da última HML (`HML-V1.1` → `HML-V1.2`) e faça o merge da branch de demanda nela.
+3. **Ajustes do Farlen** (mesmo que ele peça coisas além do pedido original) continuam na mesma branch de demanda e na **mesma** HML até a demanda ir para produção. Só uma demanda nova, depois dessa publicada, abre a próxima versão.
+4. **Subir para produção:** só depois de o desenvolvedor confirmar que está tudo certo em HML. Crie a próxima PROD a partir da última PROD (`PROD-V1.1` → `PROD-V1.2`) e faça o merge da **mesma** branch de demanda nela.
+5. **Hotfix urgente** segue o mesmo caminho: sempre passa por HML antes. Nada vai direto para produção, porque erro só pode aparecer em HML.
+6. **Vercel:** a cada versão nova, o desenvolvedor troca manualmente a branch acompanhada pelo ambiente (HML e PROD). Avise qual branch escolher.
+7. **Nunca apague branches** (de demanda, HML ou PROD). Elas são o histórico de como, quando e por que algo mudou. Só apague quando o desenvolvedor pedir.
+8. Nunca trabalhe nem faça merge em `main` ou nas branches `claude/*`.
 
 ## Commits
 
