@@ -1,65 +1,19 @@
 # CLAUDE.md
 
-Este arquivo orienta o Claude Code (claude.ai/code) ao trabalhar com o código deste repositório.
+Este arquivo orienta o Claude Code (claude.ai/code) ao trabalhar com o código deste repositório. As regras gerais (idioma, autonomia, entrevista, branches HML/PROD, commits, segurança e checklist de "pronto") estão no CLAUDE.md global do desenvolvedor; aqui fica só o que é deste projeto.
 
 ## O projeto e as pessoas
 
 - Landing page de marketing da Rodrigues Barbearia (Vila Aurora, Zona Norte de São Paulo). O objetivo é apresentar a barbearia a quem ainda não a conhece. O agendamento continua na TopSalão, a plataforma externa que a barbearia já usa. Agendamento próprio, loja e similares ficam para o futuro.
-- **Você conversa com o desenvolvedor**, que faz o site como freelancer e está aprendendo o ciclo completo: construir com IA, hospedar, proteger e fechar contrato.
-- **Farlen é o dono da barbearia** e o cliente. Fatos do negócio, textos, layout e direção visual precisam da validação dele, que chega pelo desenvolvedor.
+- **Você conversa com o desenvolvedor.** **Farlen é o dono da barbearia** e o cliente: fatos do negócio, textos, layout e direção visual precisam da validação dele, que chega pelo desenvolvedor.
 - Hospedagem na Vercel: https://barbeariarodrigues.vercel.app/
 
-## Regras de trabalho
+## Particularidades deste projeto
 
-- **Idioma:** sempre converse, pergunte e escreva documentação em português do Brasil, mesmo que a mensagem venha misturada com inglês.
-- **Mensagens por voz:** o desenvolvedor costuma ditar por voz, e a transcrição troca palavras ("HTML" quer dizer a branch **HML**, "Cloud.md" quer dizer **CLAUDE.md**). Se uma mensagem estiver ambígua ou fora de contexto, pergunte em vez de adivinhar.
-- **Skills, agents e plugins:** use qualquer skill, subagente ou plugin disponível quando ajudar na tarefa. Antes de usar, diga qual vai usar e por quê, e espere a confirmação.
-- **Dependências:** nunca instale pacotes npm sem pedir. Diga o motivo e se há alternativa sem pacote. Só instale sozinho quando o desenvolvedor liberar explicitamente.
-- **O que corrigir sozinho:** bugs, código duplicado, acessibilidade, defeitos visuais e problemas de segurança.
-- **O que propor e esperar o OK:** mudanças de layout, texto ou direção visual, porque o Farlen precisa validar.
-- **Explicações:** enquanto programa, explique em uma ou duas frases o porquê das decisões técnicas importantes (segurança, hospedagem, desempenho). Assuntos maiores, como contrato ou domínio, só quando ele pedir.
-
-## Branches e versões
-
-Há dois trilhos de versão com numeração **independente**, cada um publicado pela Vercel num ambiente próprio:
-
-- `HML-Vx.y`: homologação, onde o Farlen testa.
-- `PROD-Vx.y`: produção, o site no ar.
-
-Os números não precisam coincidir: `HML-V1.7` e `PROD-V1.4` podem existir ao mesmo tempo. Cada versão nasce da anterior **do seu próprio trilho**. O trabalho em si acontece numa branch de demanda, que é o que viaja entre os trilhos.
-
-1. **Começar a demanda:** rode `git fetch` e crie a branch de demanda **a partir da última `PROD-Vx.y`**, com o prefixo do tipo:
-   - `feature/PROD-V1.1/troca-cor-botao`: algo novo;
-   - `refac/PROD-V1.1/<assunto>`: refatoração;
-   - `hotfix/PROD-V1.1/<assunto>`: correção de bug.
-2. **Subir para teste:** crie a próxima HML a partir da última HML (`HML-V1.1` → `HML-V1.2`) e faça o merge da branch de demanda nela.
-3. **Ajustes do Farlen** (mesmo que ele peça coisas além do pedido original) continuam na mesma branch de demanda e na **mesma** HML até a demanda ir para produção. Só uma demanda nova, depois dessa publicada, abre a próxima versão.
-4. **Subir para produção:** só depois de o desenvolvedor confirmar que está tudo certo em HML. Crie a próxima PROD a partir da última PROD (`PROD-V1.1` → `PROD-V1.2`) e faça o merge da **mesma** branch de demanda nela.
-5. **Hotfix urgente** segue o mesmo caminho: sempre passa por HML antes. Nada vai direto para produção, porque erro só pode aparecer em HML.
-6. **Vercel:** a cada versão nova, o desenvolvedor troca manualmente a branch acompanhada pelo ambiente (HML e PROD). Avise qual branch escolher.
-7. **Nunca apague branches** (de demanda, HML ou PROD). Elas são o histórico de como, quando e por que algo mudou. Só apague quando o desenvolvedor pedir.
-8. Nunca trabalhe nem faça merge em `main` ou nas branches `claude/*`.
-
-## Commits
-
-- Commit e push são do desenvolvedor. Só faça quando ele pedir.
-- Mensagem em português, curta e objetiva, descrevendo o que mudou (ex.: `Altera a cor do botão de enviar`).
-- Não mencione o Claude nem a IA: sem `Co-Authored-By`, sem assinatura.
-
-## Antes de dizer "pronto"
-
-1. **Código enxuto:** nada duplicado. Reaproveite funções e componentes existentes e prefira soluções genéricas e recursos do React/Next.js a código longo para algo simples. Siga o estilo do código ao redor.
-2. **Build:** `npm run build` passando.
-3. **Interface:** abra o site no navegador, no celular e no computador, e confira o resultado. Corrija o que encontrar, respeitando o limite das regras de trabalho.
-4. **Segurança mínima:**
-   - Segredos (chaves de API, acesso a banco, senhas) ficam num arquivo próprio, listado no `.gitignore` e configurado como variável de ambiente na Vercel. Nunca no GitHub, no bundle do navegador nem indexável pelo Google.
-   - Nada no front-end pode dar acesso a banco de dados ou a dados de usuários, por exemplo via "Inspecionar" do navegador.
-   - Dados sensíveis sempre criptografados.
-   - Cabeçalhos de segurança no `next.config` (CSP, `X-Frame-Options` e similares).
-   - Links externos com `rel="noopener"` (o `ExternalLink` já cuida disso).
-   - `npm audit` sem vulnerabilidade grave.
-   - Nenhum dado pessoal publicado além do que o Farlen autorizou.
-5. Se algum passo não puder ser verificado, diga qual e por quê.
+- **Vercel:** os ambientes HML e PROD acompanham as branches `HML-Vx.y` e `PROD-Vx.y`. A cada versão nova, avise qual branch escolher em cada ambiente.
+- Nunca trabalhe nem faça merge nas branches `claude/*`: são o histórico das primeiras sessões.
+- **Build:** `npm run build` precisa passar antes de dizer "pronto".
+- **Segurança:** os cabeçalhos ficam no `next.config`; segredos, se houver, vão como variável de ambiente na Vercel. Nenhum dado pessoal publicado além do que o Farlen autorizou.
 
 ## Comandos
 
@@ -79,8 +33,8 @@ Não há lint nem testes automatizados configurados.
 - Tokens de design (cores, tipografia, espaço, raios, sombras, movimento) são variáveis CSS em `src/app/globals.css`: tema escuro, preto da fachada com acento bronze. Use os papéis (`--bg`, `--fg`, `--accent`…), não as cores cruas. Classes globais: `.container`, `.display` (título condensado), `.eyebrow`, `.visually-hidden`.
 - 3D com Three.js + React Three Fiber em `src/components/three/` (objetos feitos só com geometria, sem arquivos de modelo). `SceneStage` carrega a cena depois do `load` e da primeira interação (mouse, toque, rolagem ou tecla), pausa fora da tela e mostra uma imagem estática (`public/images/3d/`) com "reduzir movimento", aparelho fraco ou queda de FPS. Se mudar uma cena, regenere a imagem estática no mesmo formato do palco no computador (ela é ajustada pela altura, como a câmera 3D). Animações de entrada e scroll usam GSAP.
 - Fonte Archivo via `next/font` com o eixo `wdth`, usado em `font-variation-settings`.
-- **Fatos do negócio** (endereço, telefone, agenda TopSalão, nota do Google, serviços, temas das avaliações) ficam só em `src/content/business.js`. Metadados, dados estruturados (`HairSalon`) e todas as seções leem dali; o FAQ (`src/content/faq.js`) monta as respostas a partir desses fatos. Nunca invente preços, horários, equipe, redes sociais ou depoimentos: use TODO e pergunte ao desenvolvedor, que confirma com o Farlen. Ao atualizar a nota do Google, atualize `checkedAt`.
-- Links externos usam `ExternalLink` (nova aba + aviso para leitores de tela); botões usam `ActionLink`.
+- **Fatos do negócio** (endereço, telefone, agenda TopSalão, nota do Google, serviços, temas das avaliações) ficam só em `src/content/business.js`. Metadados, dados estruturados (`HairSalon`) e todas as seções leem dali; o FAQ (`src/content/faq.js`) monta as respostas a partir desses fatos. O que não estiver confirmado vira TODO para o desenvolvedor validar com o Farlen. Ao atualizar a nota do Google, atualize `checkedAt`.
+- Links externos usam `ExternalLink` (nova aba, `rel="noopener"` e aviso para leitores de tela); botões usam `ActionLink`.
 - `MobileActionBar` (componente cliente) mostra as ações fixas quando os botões do hero e da chamada final saem da tela (marcadores `data-hero-actions` e `data-closing-actions`): barra "Agendar" + WhatsApp no celular e botão redondo de WhatsApp no computador.
 - Ainda não há fotos reais da barbearia; quando houver, vão em `public/images/` com `next/image`.
 
