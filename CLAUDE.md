@@ -10,10 +10,13 @@ Este arquivo orienta o Claude Code (claude.ai/code) ao trabalhar com o código d
 
 ## Particularidades deste projeto
 
-- **Vercel:** os ambientes HML e PROD acompanham as branches `HML-Vx.y` e `PROD-Vx.y`. A cada versão nova, avise qual branch escolher em cada ambiente.
+- **Vercel (plano Hobby):** a cada versão nova, passe ao desenvolvedor o passo a passo do ambiente que mudou:
+  - **PROD** (`barbeariarodrigues.vercel.app`, ambiente Production): Settings → Environments → Production → Branch Tracking com a nova `PROD-Vx.y`; depois Deployments → Create Deployment com o nome da branch. Só trocar o Branch Tracking não publica nada. Confira em Overview → Source se a branch e o commit batem.
+  - **HML** (`hml-barbeariarodrigues.vercel.app`, domínio fixo no ambiente Preview): Settings → Domains → domínio do HML → Edit → Git Branch com a nova `HML-Vx.y`. O domínio fica aberto ao Farlen por Deployment Protection → Deployment Protection Exceptions; os demais Previews continuam exigindo login na Vercel.
+  - Quando várias branches recebem o mesmo commit num único push, a Vercel pode não montar todas. Confira em Deployments.
 - Nunca trabalhe nem faça merge nas branches `claude/*`: são o histórico das primeiras sessões.
 - **Build:** `npm run build` precisa passar antes de dizer "pronto".
-- **Segurança:** os cabeçalhos ficam no `next.config`; segredos, se houver, vão como variável de ambiente na Vercel. Nenhum dado pessoal publicado além do que o Farlen autorizou.
+- **Segurança:** os cabeçalhos ficam no `next.config.mjs`. O CSP só libera o próprio site e o iframe do Google Maps: ao adicionar qualquer recurso externo (script, fonte, imagem, iframe), libere o domínio lá. Fora da produção (`VERCEL_ENV` diferente de `production`), o site responde com `X-Robots-Tag: noindex`. Segredos, se houver, vão como variável de ambiente na Vercel. Nenhum dado pessoal publicado além do que o Farlen autorizou.
 
 ## Comandos
 
