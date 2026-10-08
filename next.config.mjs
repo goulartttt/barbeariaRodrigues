@@ -1,5 +1,8 @@
 const isDev = process.env.NODE_ENV === "development";
 
+/** Fora da produção (HML e prévias), pede aos buscadores para não indexar o site. */
+const isProduction = process.env.VERCEL_ENV === "production";
+
 /**
  * Só o próprio site carrega recursos; a exceção é o mapa do Google no iframe.
  * O Next.js hidrata a página estática com scripts inline, por isso o 'unsafe-inline'.
@@ -24,6 +27,7 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  ...(isProduction ? [] : [{ key: "X-Robots-Tag", value: "noindex" }]),
 ];
 
 /** @type {import("next").NextConfig} */
