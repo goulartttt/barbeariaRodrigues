@@ -15,13 +15,16 @@ const title = `${business.name} · ${place}`;
 const description = `Barbearia na ${place}. Corte de cabelo, barba, corte infantil e tratamentos capilares. Agende online ou chame no WhatsApp ${phone.display}.`;
 
 export const metadata = {
+  metadataBase: new URL(business.url),
   title,
   description,
   applicationName: business.name,
+  alternates: { canonical: "/" },
   formatDetection: { telephone: false },
   openGraph: {
     title,
     description,
+    url: "/",
     type: "website",
     locale: "pt_BR",
     siteName: business.name,
