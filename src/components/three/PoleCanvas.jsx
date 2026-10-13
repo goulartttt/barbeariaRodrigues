@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { PerformanceMonitor } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { disposeObject, makeBarberPole } from "./models";
-import { pointer, trackPointer } from "./pointer";
+import { pointer } from "./pointer";
+import { SceneCanvas } from "./SceneCanvas";
 import { StudioLights } from "./StudioLights";
 
 function Pole() {
@@ -31,21 +31,11 @@ function Pole() {
 }
 
 /** Poste de barbeiro girando, ao lado da tabela de preços. */
-export default function PoleCanvas({ active = true, onReady, onSlow }) {
-  useEffect(() => trackPointer(), []);
-
+export default function PoleCanvas({ active, onReady }) {
   return (
-    <Canvas
-      frameloop={active ? "always" : "never"}
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 11], fov: 30 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      onCreated={() => requestAnimationFrame(() => onReady?.())}
-      aria-hidden="true"
-    >
-      <PerformanceMonitor onFallback={() => onSlow?.()} flipflops={3} />
+    <SceneCanvas active={active} onReady={onReady} camera={{ position: [0, 0, 11], fov: 30 }}>
       <StudioLights environmentIntensity={0.55} />
       <Pole />
-    </Canvas>
+    </SceneCanvas>
   );
 }

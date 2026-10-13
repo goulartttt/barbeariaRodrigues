@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { PerformanceMonitor } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { disposeObject, makeCrossedBlades } from "./models";
-import { pointer, trackPointer } from "./pointer";
+import { pointer } from "./pointer";
+import { SceneCanvas } from "./SceneCanvas";
 import { StudioLights } from "./StudioLights";
 
 function Blades() {
@@ -30,23 +30,12 @@ function Blades() {
   );
 }
 
-/** Cena do hero: navalha e tesoura cruzadas. `active` pausa o desenho fora da tela. */
-export default function BladesCanvas({ active = true, onReady, onSlow }) {
-  useEffect(() => trackPointer(), []);
-
+/** Cena do hero: navalha e tesoura cruzadas. */
+export default function BladesCanvas({ active, onReady }) {
   return (
-    <Canvas
-      frameloop={active ? "always" : "never"}
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 12], fov: 28 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      onCreated={() => requestAnimationFrame(() => onReady?.())}
-      aria-hidden="true"
-    >
-      {/* Se o aparelho não sustentar a animação, volta para a imagem estática. */}
-      <PerformanceMonitor onFallback={() => onSlow?.()} flipflops={3} />
+    <SceneCanvas active={active} onReady={onReady} camera={{ position: [0, 0, 12], fov: 28 }}>
       <StudioLights />
       <Blades />
-    </Canvas>
+    </SceneCanvas>
   );
 }

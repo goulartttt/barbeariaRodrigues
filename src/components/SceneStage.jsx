@@ -48,7 +48,8 @@ function afterFirstInteraction() {
  * Palco de uma cena 3D: mostra a imagem estática na hora e só carrega o 3D
  * depois que a página carregou, a pessoa começou a usar a página e a cena
  * chegou perto da tela. Em aparelhos fracos ou com
- * "reduzir movimento", a imagem estática fica. Fora da tela, a cena pausa.
+ * "reduzir movimento", a imagem estática fica. Fora da tela, a cena pausa;
+ * se o FPS cair, a cena baixa a resolução em vez de sumir (veja `SceneCanvas`).
  */
 export function SceneStage({ Scene, poster, className, priority = false, sizes = "100vw" }) {
   const stage = useRef(null);
@@ -56,7 +57,6 @@ export function SceneStage({ Scene, poster, className, priority = false, sizes =
   const [active, setActive] = useState(false);
   const [seen, setSeen] = useState(false);
   const [ready, setReady] = useState(false);
-  const [slow, setSlow] = useState(false);
 
   useEffect(() => {
     if (!canRender3D()) return;
@@ -95,16 +95,9 @@ export function SceneStage({ Scene, poster, className, priority = false, sizes =
         sizes={sizes}
         priority={priority}
       />
-      {enabled && !slow && (
+      {enabled && (
         <div className={styles.canvas}>
-          <Scene
-            active={active}
-            onReady={() => setReady(true)}
-            onSlow={() => {
-              setReady(false);
-              setSlow(true);
-            }}
-          />
+          <Scene active={active} onReady={() => setReady(true)} />
         </div>
       )}
     </div>
