@@ -37,9 +37,9 @@ Não há lint nem testes automatizados configurados.
 - 3D com Three.js + React Three Fiber em `src/components/three/` (objetos feitos só com geometria, sem arquivos de modelo). `SceneStage` carrega a cena depois do `load` e da primeira interação (mouse, toque, rolagem ou tecla), pausa fora da tela e mostra uma imagem estática (`public/images/3d/`) com "reduzir movimento", aparelho fraco ou queda de FPS. Se mudar uma cena, regenere a imagem estática no mesmo formato do palco no computador (ela é ajustada pela altura, como a câmera 3D). Animações de entrada e scroll usam GSAP.
 - Fonte Archivo via `next/font` com o eixo `wdth`, usado em `font-variation-settings`.
 - **Fatos do negócio** (endereço, telefone, agenda TopSalão, nota do Google, serviços, temas das avaliações) ficam só em `src/content/business.js`. Metadados, dados estruturados (`HairSalon`) e todas as seções leem dali; o FAQ (`src/content/faq.js`) monta as respostas a partir desses fatos. O que não estiver confirmado vira TODO para o desenvolvedor validar com o Farlen. Ao atualizar a nota do Google, atualize `checkedAt`.
-- Links externos usam `ExternalLink` (nova aba, `rel="noopener"` e aviso para leitores de tela); botões usam `ActionLink`.
+- Links externos usam `ExternalLink` (nova aba, `rel="noopener noreferrer"` e aviso para leitores de tela); botões usam `ActionLink`.
 - `MobileActionBar` (componente cliente) mostra as ações fixas quando os botões do hero e da chamada final saem da tela (marcadores `data-hero-actions` e `data-closing-actions`): barra "Agendar" + WhatsApp no celular e botão redondo de WhatsApp no computador.
-- Ainda não há fotos reais da barbearia; quando houver, vão em `public/images/` com `next/image`.
+- Fotos reais ficam em `public/images/fotos/`, sempre com `next/image`; a lista da galeria e da equipe fica em `business.js`. Falta a foto do Raphael (o card mostra a inicial).
 
 ## Agent skills
 
