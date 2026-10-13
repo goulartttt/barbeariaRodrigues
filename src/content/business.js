@@ -27,6 +27,8 @@ const mapsQuery = encodeURIComponent(`${name}, ${address.full}`);
 
 export const business = {
   name,
+  /** Endereço do site. Troque aqui quando houver domínio próprio. */
+  url: "https://barbeariarodrigues.vercel.app",
   address,
   phone: {
     display: "(11) 97190-4140",
