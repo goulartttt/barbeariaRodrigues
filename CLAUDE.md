@@ -38,9 +38,9 @@ Não há lint nem testes automatizados configurados.
 - Fonte Archivo via `next/font` com o eixo `wdth`, usado em `font-variation-settings`.
 - **Fatos do negócio** (endereço, telefone, agenda TopSalão, nota do Google, serviços, temas das avaliações) ficam só em `src/content/business.js`. Metadados, dados estruturados (`HairSalon`) e todas as seções leem dali; o FAQ (`src/content/faq.js`) monta as respostas a partir desses fatos. O que não estiver confirmado vira TODO para o desenvolvedor validar com o Farlen. Ao atualizar a nota do Google, atualize `checkedAt`.
 - O endereço do site fica em `business.url` (base das URLs absolutas e do canonical). A imagem de compartilhamento (`src/app/opengraph-image.png`, 1200x630) e o ícone do iPhone (`src/app/apple-icon.png`) são gerados a partir de `docs/imagens/*.html`: se a nota do Google ou o visual mudarem, edite o HTML e capture de novo no mesmo tamanho. A imagem é lida da URL de produção, então só aparece nos links depois de publicada na PROD.
-- Links externos usam `ExternalLink` (nova aba, `rel="noopener"` e aviso para leitores de tela); botões usam `ActionLink`.
+- Links externos usam `ExternalLink` (nova aba, `rel="noopener noreferrer"` e aviso para leitores de tela); botões usam `ActionLink`.
 - `MobileActionBar` (componente cliente) mostra as ações fixas quando os botões do hero e da chamada final saem da tela (marcadores `data-hero-actions` e `data-closing-actions`): barra "Agendar" + WhatsApp no celular e botão redondo de WhatsApp no computador.
-- Ainda não há fotos reais da barbearia; quando houver, vão em `public/images/` com `next/image`.
+- Fotos reais ficam em `public/images/fotos/`, sempre com `next/image`; a lista da galeria e da equipe fica em `business.js`. Falta a foto do Raphael (o card mostra a inicial).
 
 ## Agent skills
 
