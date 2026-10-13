@@ -1,0 +1,44 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-height: 100svh;
+  padding-block: var(--space-6) var(--section-y);
+  background: radial-gradient(60% 50% at 80% 70%, rgb(184 146 90 / 0.12), transparent 70%);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-5);
+  margin-block: auto;
+}
+
+.title {
+  font-size: clamp(3.5rem, 1rem + 7vw, 8rem);
+  font-weight: 300;
+}
+
+.title span {
+  display: block;
+  font-weight: 800;
+  color: var(--accent-hover);
+}
+
+.note {
+  max-width: 32rem;
+  color: var(--fg-muted);
+  font-size: var(--text-lg);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 29.99rem) {
+  .actions {
+    flex-direction: column;
+  }
+}
